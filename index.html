@@ -499,12 +499,6 @@ let SYNC_PENDING = []; // queue of changes when offline
 
 function syncInit() {
   updateSyncBadge('⏳ Cargando datos..', '#f0c060');
-  // Check if returning from auth redirect
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('auth') === 'done') {
-    // Clean the URL without reloading
-    window.history.replaceState({}, '', window.location.pathname);
-  }
   loadFromSheet();
 }
 
@@ -518,48 +512,27 @@ function loadFromSheet() {
   .then(r => r.json())
   .then(data => {
     if (data.ok) {
-      SYNC_USER = data.user || 'Usuario';
+      SYNC_USER = data.user || 'Equipo IDCATT';
       SYNC_ONLINE = true;
       mergeSheetData(data.datos);
-      updateSyncBadge('🟢 ' + SYNC_USER.split('@')[0], '#7ec99a');
+      updateSyncBadge('🟢 Conectado', '#7ec99a');
       updateSb(); updateHeader(); showGlobal();
-    } else if (data.error && data.error.includes('autorizado')) {
-      updateSyncBadge('🔒 No autorizado', '#e89090');
-      showAuthError(data.error);
     } else {
-      needsAuth();
+      updateSyncBadge('⚠️ Error: ' + (data.error||'desconocido'), '#e89090');
+      // Fallback: mostrar con datos locales
+      updateSb(); updateHeader(); showGlobal();
     }
   })
   .catch(() => {
-    needsAuth();
+    updateSyncBadge('⚠️ Sin conexión — datos locales', '#e89090');
+    SYNC_ONLINE = false;
+    updateSb(); updateHeader(); showGlobal();
   });
 }
 
-function needsAuth() {
-  updateSyncBadge('🔑 Acceso requerido', '#e89090');
-  document.getElementById('main').innerHTML = `
-    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:20px;text-align:center;padding:40px">
-      <div style="font-size:56px">🔐</div>
-      <h2 style="font-size:18px;font-weight:600;color:#1a1917">Acceso requerido</h2>
-      <p style="font-size:13px;color:#5c5a55;max-width:400px;line-height:1.7">
-        Para acceder a la herramienta necesitas autenticarte con tu cuenta Google.<br><br>
-        Haz clic en el botón — se abrirá la página de Google en esta misma pestaña. 
-        Después de iniciar sesión serás redirigido automáticamente aquí.
-      </p>
-      <a href="${WEB_APP_URL}" 
-         style="padding:13px 32px;background:#1a5276;color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:10px;text-decoration:none">
-        <span style="font-size:18px">🔑</span> Iniciar sesión con Google
-      </a>
-      <p style="font-size:11px;color:#8c8a84;max-width:360px">
-        Tras iniciar sesión, Google te mostrará una página con datos en formato JSON — 
-        es normal. Vuelve a esta pestaña con el botón Atrás del navegador 
-        y la herramienta cargará automáticamente.
-      </p>
-    </div>`;
-}
-
-function doLogin() { needsAuth(); }
-function openAuthPopup() { needsAuth(); }
+function doLogin() {}
+function openAuthPopup() {}
+function needsAuth() {}
 
 function mergeSheetData(sheetData) {
   // sheetData: { M0: {entregables:[...], cierre:{...}}, M1: ... }
