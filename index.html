@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDCATT Cinco Villas — Justificación PRTR</title>
+<style>
+:root{
+  --bg:#f7f6f3;--sf:#fff;--sf2:#f2f0ec;--bd:#e0ddd8;--bd2:#ccc9c2;
+  --tx:#1a1917;--tx2:#5c5a55;--tx3:#8c8a84;
+  --ac:#1a5276;--ac2:#eaf1f8;
+  --gn:#1d6a3a;--gn2:#e8f5ee;--gn3:#7ec99a;
+  --am:#7a4f00;--am2:#fef7e6;--am3:#f0c060;
+  --rd:#8b2020;--rd2:#fdeaea;--rd3:#e89090;
+  --bl:#1a4a7a;--bl2:#e8f0f8;--bl3:#90b8e0;
+  --pu:#4a2080;--pu2:#f0eaf8;--pu3:#b090d8;
+  --r:6px;--rl:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);font-size:13px;line-height:1.5;min-height:100vh;}
+
+.hdr{background:var(--ac);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;}
+.hdr h1{font-size:14px;font-weight:600;}
+.hdr .sub{font-size:11px;opacity:.7;margin-top:2px;}
+.hstats{display:flex;gap:16px;}
+.hs{text-align:center;}
+.hs-v{font-size:18px;font-weight:700;line-height:1;}
+.hs-l{font-size:9px;opacity:.6;text-transform:uppercase;letter-spacing:.05em;}
+.hbtns{display:flex;gap:6px;}
+
+.body{display:flex;min-height:calc(100vh - 60px);}
+.sb{width:215px;flex-shrink:0;background:var(--sf);border-right:1px solid var(--bd);padding:8px 0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+.main{flex:1;padding:18px 20px;min-width:0;overflow-x:auto;}
+
+.sb-sec{padding:4px 12px 5px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--tx3);margin-top:6px;}
+.nav{display:flex;align-items:center;gap:6px;padding:7px 12px;cursor:pointer;border:none;background:none;width:100%;text-align:left;color:var(--tx2);font-size:11px;border-left:3px solid transparent;}
+.nav:hover{background:var(--sf2);}
+.nav.on{background:var(--ac2);color:var(--ac);border-left-color:var(--ac);font-weight:500;}
+.nb{font-size:10px;padding:1px 5px;border-radius:8px;background:var(--sf2);color:var(--tx3);margin-left:auto;white-space:nowrap;}
+.nav.on .nb{background:var(--ac2);color:var(--ac);}
+.npb{width:100%;height:2px;background:var(--bd);border-radius:1px;margin-top:3px;overflow:hidden;}
+.npf{height:100%;border-radius:1px;transition:width .3s;}
+.ni{flex:1;min-width:0;}
+
+.sh{margin-bottom:14px;}
+.sh h2{font-size:16px;font-weight:600;}
+.sm{font-size:12px;color:var(--tx2);margin-top:2px;}
+.sm span{margin-right:12px;}
+
+.sr{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:8px;margin-bottom:16px;}
+.sc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:10px 12px;}
+.sl{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--tx3);margin-bottom:3px;}
+.sv{font-size:20px;font-weight:700;line-height:1;}
+.ss{font-size:10px;color:var(--tx3);margin-top:2px;}
+.sc.g .sv{color:var(--gn);} .sc.a .sv{color:var(--am);} .sc.r .sv{color:var(--rd);} .sc.b .sv{color:var(--bl);}
+
+/* MODULE TABS */
+.mod-tabs{display:flex;gap:0;border-bottom:2px solid var(--bd);margin-bottom:16px;}
+.mod-tab{padding:8px 18px;cursor:pointer;border:none;background:none;font-size:13px;color:var(--tx2);border-bottom:2px solid transparent;margin-bottom:-2px;font-family:inherit;}
+.mod-tab:hover{color:var(--tx);}
+.mod-tab.on{color:var(--ac);border-bottom-color:var(--ac);font-weight:500;}
+.tab-cnt{font-size:11px;padding:1px 6px;border-radius:8px;background:var(--sf2);color:var(--tx3);margin-left:5px;}
+.mod-tab.on .tab-cnt{background:var(--ac2);color:var(--ac);}
+
+.fb{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:12px;padding:8px 12px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);}
+.fb label{font-size:11px;color:var(--tx3);}
+select,input[type=text]{font-size:12px;padding:4px 7px;border-radius:var(--r);border:1px solid var(--bd2);background:var(--bg);color:var(--tx);font-family:inherit;}
+
+/* ENTREGABLES TABLE */
+.tw{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;min-width:900px;}
+thead th{padding:7px 9px;text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);background:var(--sf2);border-bottom:1px solid var(--bd);white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--bd);}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:#fafaf8;}
+tbody tr.disabled-row{opacity:.38;}
+tbody tr.disabled-row .td-ent{text-decoration:line-through;color:var(--tx3);}
+td{padding:6px 9px;vertical-align:middle;}
+
+/* CHECK TOGGLE */
+.chk{width:16px;height:16px;cursor:pointer;accent-color:var(--ac);}
+
+.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;border:1px solid;white-space:nowrap;cursor:pointer;user-select:none;}
+.badge:hover{opacity:.8;}
+.badge.pendiente{color:var(--rd);background:var(--rd2);border-color:var(--rd3);}
+.badge.en-curso{color:var(--am);background:var(--am2);border-color:var(--am3);}
+.badge.completado{color:var(--gn);background:var(--gn2);border-color:var(--gn3);}
+
+.rk{display:inline-block;font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;}
+.rk.alto{color:var(--rd);background:var(--rd2);}
+.rk.medio{color:var(--am);background:var(--am2);}
+.rk.bajo{color:var(--gn);background:var(--gn2);}
+
+.pt{font-size:10px;padding:1px 4px;border-radius:3px;background:var(--pu2);color:var(--pu);border:1px solid var(--pu3);margin-right:2px;margin-bottom:1px;display:inline-block;}
+.hl{font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:var(--bl2);color:var(--bl);border:1px solid var(--bl3);}
+
+.ed{cursor:text;border-radius:3px;padding:2px 4px;min-height:18px;display:block;width:100%;font-size:12px;}
+.ed:hover{background:var(--sf2);outline:1px dashed var(--bd2);}
+.ed:focus{outline:2px solid var(--ac);background:#fff;}
+.ed.e::before{content:attr(data-ph);color:var(--tx3);font-style:italic;font-size:11px;}
+
+/* DOC BUTTON inline */
+.dc-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:var(--r);border:1px dashed var(--bd2);background:none;cursor:pointer;font-size:11px;color:var(--tx2);font-family:inherit;}
+.dc-btn:hover{background:var(--sf2);border-color:var(--tx3);}
+.dc-btn.has{border-style:solid;border-color:var(--bl3);background:var(--bl2);color:var(--bl);}
+.dc-pill{font-size:10px;padding:1px 5px;border-radius:3px;border:1px solid var(--bl3);background:var(--bl2);color:var(--bl);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;display:inline-block;margin-top:2px;}
+
+/* CIERRE TAB */
+.cierre-grid{display:flex;flex-direction:column;gap:12px;}
+.cierre-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden;}
+.cierre-card-hdr{padding:12px 16px;background:var(--sf2);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;}
+.cierre-card-hdr .icon{font-size:20px;}
+.cierre-card-hdr h3{font-size:14px;font-weight:600;flex:1;}
+.cierre-card-hdr .badge{cursor:pointer;}
+.cierre-card-body{padding:14px 16px;}
+.cierre-meta{font-size:11px;color:var(--tx2);margin-bottom:12px;}
+.doc-list-inline{display:flex;flex-direction:column;gap:7px;margin-bottom:12px;}
+.di{border:1px solid var(--bd);border-radius:var(--r);padding:9px 11px;background:var(--sf);}
+.di-top{display:flex;align-items:flex-start;gap:7px;}
+.di-ico{width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.di-ico.pdf{background:var(--rd2);} .di-ico.sheet{background:var(--gn2);} .di-ico.doc{background:var(--bl2);} .di-ico.img{background:var(--am2);} .di-ico.drive{background:var(--ac2);} .di-ico.other{background:var(--sf2);}
+.di-info{flex:1;min-width:0;}
+.di-name{font-size:12px;font-weight:500;word-break:break-word;}
+.di-url{font-size:11px;color:var(--tx3);margin-top:2px;}
+.di-url a{color:var(--ac);text-decoration:none;}
+.di-url a:hover{text-decoration:underline;}
+.di-meta2{font-size:10px;color:var(--tx3);margin-top:2px;}
+.di-acts{display:flex;gap:4px;margin-top:6px;}
+.di-del{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--rd3);color:var(--rd);background:var(--rd2);cursor:pointer;font-family:inherit;}
+.di-del:hover{opacity:.8;}
+.di-open{font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid var(--bl3);color:var(--bl);background:var(--bl2);text-decoration:none;display:inline-block;}
+
+/* ADD DOC INLINE */
+.add-doc-form{border:1px solid var(--bd);border-radius:var(--r);padding:11px 13px;background:var(--sf2);}
+.add-doc-form h4{font-size:12px;font-weight:600;margin-bottom:8px;}
+.fr{margin-bottom:7px;}
+.fr label{display:block;font-size:11px;color:var(--tx2);margin-bottom:2px;font-weight:500;}
+.fr input,.fr select,.fr textarea{width:100%;font-size:12px;padding:5px 7px;border-radius:var(--r);border:1px solid var(--bd2);background:#fff;color:var(--tx);font-family:inherit;}
+.fr textarea{resize:vertical;min-height:42px;}
+.add-btn{padding:6px 14px;border-radius:var(--r);border:none;background:var(--ac);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;width:100%;margin-top:3px;}
+.add-btn:hover{opacity:.9;}
+.empty-msg{font-size:12px;color:var(--tx3);font-style:italic;padding:10px;border:1px dashed var(--bd2);border-radius:var(--r);text-align:center;margin-bottom:10px;}
+
+/* GLOBAL */
+.gc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);margin-bottom:9px;cursor:pointer;}
+.gc:hover{border-color:var(--bd2);}
+.gc-hdr{padding:12px 15px;display:flex;align-items:center;gap:9px;}
+.mtag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;}
+.mn strong{font-size:13px;font-weight:600;display:block;}
+.mn small{font-size:11px;color:var(--tx2);}
+.mpb{display:flex;align-items:center;gap:5px;}
+.mbar{width:66px;height:3px;background:var(--bd);border-radius:2px;overflow:hidden;}
+.mbf{height:100%;border-radius:2px;}
+.mpct{font-size:11px;font-weight:600;min-width:26px;}
+.hgrid{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px;}
+.hc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:7px 10px;min-width:105px;}
+.hc-tag{font-size:9px;font-weight:700;margin-bottom:2px;}
+.hc-desc{font-size:10px;color:var(--tx2);margin-bottom:3px;line-height:1.3;}
+.hc-stat{font-size:11px;font-weight:600;}
+
+.btn{padding:5px 12px;border-radius:var(--r);border:1px solid var(--bd2);background:var(--sf);color:var(--tx);font-size:11px;cursor:pointer;font-family:inherit;}
+.btn:hover{background:var(--sf2);}
+.btn-p{background:var(--ac);color:#fff;border-color:var(--ac);}
+.btn-p:hover{opacity:.9;}
+.toast{position:fixed;bottom:16px;right:16px;background:var(--gn);color:#fff;padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:500;opacity:0;transition:opacity .25s;pointer-events:none;z-index:999;}
+.toast.on{opacity:1;}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div>
+    <h1>IDCATT Cinco Villas — Trazabilidad Justificación PRTR</h1>
+    <div class="sub">Subvención: 846.153 € &middot; Cierre ejecución: 30/06/2026 &middot; Justificación: 30/09/2026 &middot; Globaldit – OT</div>
+  </div>
+  <div class="hstats">
+    <div class="hs"><div class="hs-v" id="gs-t">—</div><div class="hs-l">Total</div></div>
+    <div class="hs"><div class="hs-v" id="gs-d" style="color:#7ec99a">—</div><div class="hs-l">Completado</div></div>
+    <div class="hs"><div class="hs-v" id="gs-c" style="color:#f0c060">—</div><div class="hs-l">En curso</div></div>
+    <div class="hs"><div class="hs-v" id="gs-p" style="color:#e89090">—</div><div class="hs-l">Pendiente</div></div>
+    <div class="hs"><div class="hs-v" id="gs-doc" style="color:#90b8e0">—</div><div class="hs-l">Docs</div></div>
+  </div>
+  <div style="font-size:11px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15)" id="sync-badge">⏳ Conectando..</div>
+  <div class="hbtns">
+    <button class="btn btn-p" onclick="exportData()">⬇ Exportar</button>
+    <button class="btn" onclick="document.getElementById('imp').click()">⬆ Importar</button>
+    <input type="file" id="imp" accept=".json" style="display:none" onchange="doImport(event)">
+  </div>
+</header>
+
+<div class="body">
+  <nav class="sb" id="sb"></nav>
+  <main class="main" id="main"></main>
+</div>
+
+<div class="toast" id="toast">✓ Guardado</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────
+const MODULES = [
+  { id:'global', label:'∑', name:'Resumen global', empresa:'', color:'#1a5276', colorBg:'#eaf1f8', isGlobal:true },
+  {
+    id:'M0', label:'M0', tag:'M0',
+    name:'Oficina Técnica', empresa:'Globaldit',
+    color:'#2c3e50', colorBg:'#eaecee',
+    importe: 134310.00,
+    hitos:[
+      {id:'M0-H1', label:'H1', desc:'Puesta en marcha y planificación'},
+      {id:'M0-H2', label:'H2', desc:'Seguimiento y validación continua'},
+      {id:'M0-H3', label:'H3', desc:'Cierre y justificación'}
+    ],
+    entregables:[
+      {id:'M0-E01',code:'M0-E01',desc:'Plan de trabajo OT',hito:'M0-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación OT',ev_tipo:'Documento plan validado por Comarca'},
+      {id:'M0-E02',code:'M0-E02',desc:'Actas de reunión de seguimiento',hito:'M0-H2',prtr:['ejecución material'],riesgo:'bajo',indicador:'Seguimiento',ev_tipo:'Actas firmadas de todas las reuniones'},
+      {id:'M0-E03',code:'M0-E03',desc:'Informes de avance periódicos',hito:'M0-H2',prtr:['ejecución material'],riesgo:'bajo',indicador:'Seguimiento',ev_tipo:'Informes mensuales / quincenales'},
+      {id:'M0-E04',code:'M0-E04',desc:'Gate reports de validación (M1–M5)',hito:'M0-H2',prtr:['gate OT'],riesgo:'alto',indicador:'Cierre contratos',ev_tipo:'Informes de conformidad técnica por módulo y hito'},
+      {id:'M0-E05',code:'M0-E05',desc:'Cuadro trazabilidad gasto PRTR',hito:'M0-H2',prtr:['gobierno del dato'],riesgo:'alto',indicador:'Justificación económica',ev_tipo:'Matriz trazabilidad factura ↔ hito ↔ objetivo'},
+      {id:'M0-E06',code:'M0-E06',desc:'Verificación publicidad PRTR en entregables',hito:'M0-H2',prtr:['publicidad PRTR'],riesgo:'medio',indicador:'Cumplimiento normativo',ev_tipo:'Checklist logos UE/PRTR/Ministerio + capturas'},
+      {id:'M0-E07',code:'M0-E07',desc:'Acreditación interoperabilidad nodo PID',hito:'M0-H3',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Certificación conjunta OT + SEGITTUR'},
+      {id:'M0-E08',code:'M0-E08',desc:'Informe final de cierre OT',hito:'M0-H3',prtr:['Informe Conformidad PRTR','gate OT'],riesgo:'alto',indicador:'Cierre proyecto',ev_tipo:'Memoria de actuaciones OT durante todo el proyecto'},
+      {id:'M0-E09',code:'M0-E09',desc:'Dosier fin de proyecto (comunicación)',hito:'M0-H3',prtr:['publicidad PRTR'],riesgo:'medio',indicador:'Cierre proyecto',ev_tipo:'Dosier art. 10.3.d Orden ITU/1423/2023'},
+      {id:'M0-E10',code:'M0-E10',desc:'Consulta / respuesta SEGITTUR sobre auditor',hito:'M0-H3',prtr:['ejecución material'],riesgo:'alto',indicador:'Justificación económica',ev_tipo:'Escrito formal + respuesta escrita SEGITTUR'}
+    ]
+  },
+    {
+    id:'M1', label:'M1', name:'Plataforma DTI Nexa + PID', empresa:'Proveedor adjudicatario',
+    color:'#3c3489', colorBg:'#eeedfe', importe:71656.20,
+    hitos:[
+      {id:'M1-H1',label:'H1',desc:'Entornos y seguridad'},
+      {id:'M1-H2',label:'H2',desc:'Integración PID'},
+      {id:'M1-H3',label:'H3',desc:'Gobierno del dato y APIs'},
+      {id:'M1-H4',label:'H4',desc:'Capacitación y cierre'}
+    ],
+    entregables:[
+      {id:'M1-E01',code:'M1-E01',desc:'Entorno PRE',hito:'M1-H1',prtr:['ejecución material'],riesgo:'medio',indicador:'Plataforma operativa',ev_tipo:'Documento técnico + captura pantalla'},
+      {id:'M1-E02',code:'M1-E02',desc:'Entorno PROD',hito:'M1-H1',prtr:['ejecución material'],riesgo:'alto',indicador:'Plataforma operativa',ev_tipo:'Acta puesta en producción'},
+      {id:'M1-E03',code:'M1-E03',desc:'Auditoría ENS',hito:'M1-H1',prtr:['seguridad PRTR'],riesgo:'alto',indicador:'Cumplimiento normativo',ev_tipo:'Informe auditoría ENS firmado'},
+      {id:'M1-E04',code:'M1-E04',desc:'Plan RGPD',hito:'M1-H1',prtr:['protección datos'],riesgo:'medio',indicador:'Cumplimiento normativo',ev_tipo:'Documento plan RGPD aprobado'},
+      {id:'M1-E05',code:'M1-E05',desc:'Plan continuidad y recuperación',hito:'M1-H1',prtr:['seguridad PRTR'],riesgo:'medio',indicador:'Plataforma operativa',ev_tipo:'Documento plan BCR'},
+      {id:'M1-E06',code:'M1-E06',desc:'Consola administración',hito:'M1-H2',prtr:['ejecución material'],riesgo:'medio',indicador:'Plataforma operativa',ev_tipo:'Captura pantalla + manual acceso'},
+      {id:'M1-E07',code:'M1-E07',desc:'Subsistema BI',hito:'M1-H2',prtr:['interoperabilidad PID'],riesgo:'medio',indicador:'Datos compartidos PID',ev_tipo:'Demo funcional documentada'},
+      {id:'M1-E08',code:'M1-E08',desc:'Geovisor',hito:'M1-H2',prtr:['ejecución material'],riesgo:'bajo',indicador:'Plataforma operativa',ev_tipo:'Captura + evidencia funcional'},
+      {id:'M1-E09',code:'M1-E09',desc:'Interoperabilidad PID',hito:'M1-H2',prtr:['interoperabilidad PID','UNE 178503'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Certificado integración SEGITTUR'},
+      {id:'M1-E10',code:'M1-E10',desc:'Puntos conexión bidireccional',hito:'M1-H2',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Log de conexión + certificado'},
+      {id:'M1-E11',code:'M1-E11',desc:'Hoja ruta integración',hito:'M1-H2',prtr:['interoperabilidad PID'],riesgo:'bajo',indicador:'Nodo PID conectado',ev_tipo:'Documento hoja de ruta'},
+      {id:'M1-E12',code:'M1-E12',desc:'Esquema integración PID',hito:'M1-H2',prtr:['interoperabilidad PID'],riesgo:'bajo',indicador:'Nodo PID conectado',ev_tipo:'Diagrama técnico validado OT'},
+      {id:'M1-E13',code:'M1-E13',desc:'Catálogo APIs',hito:'M1-H3',prtr:['interoperabilidad PID','UNE 178503'],riesgo:'alto',indicador:'Datos compartidos PID',ev_tipo:'OpenAPI spec + validación OT'},
+      {id:'M1-E14',code:'M1-E14',desc:'Colección API REST',hito:'M1-H3',prtr:['interoperabilidad PID'],riesgo:'medio',indicador:'Datos compartidos PID',ev_tipo:'Colección Postman / Insomnia'},
+      {id:'M1-E15',code:'M1-E15',desc:'Inventario datasets',hito:'M1-H3',prtr:['gobierno del dato'],riesgo:'medio',indicador:'Datos compartidos PID',ev_tipo:'Documento inventario datasets'},
+      {id:'M1-E16',code:'M1-E16',desc:'Linaje de datos',hito:'M1-H3',prtr:['gobierno del dato'],riesgo:'medio',indicador:'Datos compartidos PID',ev_tipo:'Diagrama linaje validado'},
+      {id:'M1-E17',code:'M1-E17',desc:'Plan gobierno del dato',hito:'M1-H3',prtr:['gobierno del dato'],riesgo:'alto',indicador:'Datos compartidos PID',ev_tipo:'Plan aprobado por OT'},
+      {id:'M1-E18',code:'M1-E18',desc:'Actas reuniones',hito:'M1-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Seguimiento',ev_tipo:'Actas firmadas (todas las reuniones)'},
+      {id:'M1-E19',code:'M1-E19',desc:'Informes avance',hito:'M1-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Seguimiento',ev_tipo:'Informes periódicos validados OT'},
+      {id:'M1-E20',code:'M1-E20',desc:'Manuales',hito:'M1-H4',prtr:['ejecución material'],riesgo:'bajo',indicador:'Plataforma operativa',ev_tipo:'Manual técnico + usuario'},
+      {id:'M1-E21',code:'M1-E21',desc:'Materiales formativos',hito:'M1-H4',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación equipo comarca',ev_tipo:'Materiales entregados + acta formación'},
+      {id:'M1-E22',code:'M1-E22',desc:'Informe capacitación',hito:'M1-H4',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación equipo comarca',ev_tipo:'Informe firmado asistentes'},
+      {id:'M1-E23',code:'M1-E23',desc:'Informes validación OT',hito:'M1-H4',prtr:['gate OT','Informe Conformidad PRTR'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Informes gate firmados por OT'},
+      {id:'M1-E24',code:'M1-E24',desc:'Migración PROD',hito:'M1-H4',prtr:['ejecución material'],riesgo:'alto',indicador:'Plataforma operativa',ev_tipo:'Acta migración a producción'}
+    ]
+  },
+  {
+    id:'M2', label:'M2', name:'Capa semántica / CMS', empresa:'Proveedor adjudicatario',
+    color:'#0f6e56', colorBg:'#e1f5ee', importe:77781.22,
+    hitos:[
+      {id:'M2-H1',label:'H1',desc:'Análisis e inventario'},
+      {id:'M2-H2',label:'H2',desc:'Contenidos y CMS en prod.'},
+      {id:'M2-H3',label:'H3',desc:'Cierre y conformidad'}
+    ],
+    entregables:[
+      {id:'M2-E01',code:'M2-E01',desc:'Plan trabajo y cronograma',hito:'M2-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Plan aprobado OT'},
+      {id:'M2-E02',code:'M2-E02',desc:'Inventario turístico priorizado',hito:'M2-H1',prtr:['ejecución material'],riesgo:'medio',indicador:'Oferta digitalizada',ev_tipo:'Inventario validado'},
+      {id:'M2-E03',code:'M2-E03',desc:'Fichas normalizadas',hito:'M2-H1',prtr:['UNE 178503'],riesgo:'medio',indicador:'Oferta digitalizada',ev_tipo:'Fichas con metadatos semánticos'},
+      {id:'M2-E04',code:'M2-E04',desc:'Diccionario semántico',hito:'M2-H1',prtr:['UNE 178503','interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Diccionario validado OT'},
+      {id:'M2-E05',code:'M2-E05',desc:'Plan captación empresas',hito:'M2-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Empresas incorporadas',ev_tipo:'Plan + evidencias captación'},
+      {id:'M2-E06',code:'M2-E06',desc:'Contenidos multimedia',hito:'M2-H2',prtr:['publicidad PRTR'],riesgo:'medio',indicador:'Oferta digitalizada',ev_tipo:'Galería entregada + metadatos'},
+      {id:'M2-E07',code:'M2-E07',desc:'Informe accesibilidad',hito:'M2-H2',prtr:['accesibilidad'],riesgo:'medio',indicador:'Cumplimiento normativo',ev_tipo:'Informe WCAG 2.1 AA'},
+      {id:'M2-E08',code:'M2-E08',desc:'Catálogo oferta turística',hito:'M2-H2',prtr:['ejecución material'],riesgo:'medio',indicador:'Oferta digitalizada',ev_tipo:'Catálogo publicado en CMS'},
+      {id:'M2-E09',code:'M2-E09',desc:'Fichas CMS/PID',hito:'M2-H2',prtr:['interoperabilidad PID','UNE 178503'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Fichas validadas + evidencia publicación'},
+      {id:'M2-E10',code:'M2-E10',desc:'Política control semántico',hito:'M2-H2',prtr:['gobierno del dato'],riesgo:'medio',indicador:'Datos compartidos PID',ev_tipo:'Política aprobada OT'},
+      {id:'M2-E11',code:'M2-E11',desc:'Manual usuario',hito:'M2-H3',prtr:['ejecución material'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Manual entregado'},
+      {id:'M2-E12',code:'M2-E12',desc:'Tutoriales grabados',hito:'M2-H3',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Vídeos tutoriales accesibles'},
+      {id:'M2-E13',code:'M2-E13',desc:'Guía estilo dato',hito:'M2-H3',prtr:['gobierno del dato'],riesgo:'bajo',indicador:'Datos compartidos PID',ev_tipo:'Guía aprobada'},
+      {id:'M2-E14',code:'M2-E14',desc:'Catálogo datos comarcal',hito:'M2-H3',prtr:['gobierno del dato','interoperabilidad PID'],riesgo:'alto',indicador:'Datos compartidos PID',ev_tipo:'Catálogo validado SEGITTUR'},
+      {id:'M2-E15',code:'M2-E15',desc:'Informe conformidad PRTR',hito:'M2-H3',prtr:['Informe Conformidad PRTR','gate OT'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Informe firmado OT + proveedor'},
+      {id:'M2-E16',code:'M2-E16',desc:'Actas revisión',hito:'M2-H2',prtr:['ejecución material'],riesgo:'bajo',indicador:'Seguimiento',ev_tipo:'Actas firmadas reuniones'},
+      {id:'M2-E17',code:'M2-E17',desc:'Informes control calidad',hito:'M2-H3',prtr:['gate OT'],riesgo:'medio',indicador:'Seguimiento',ev_tipo:'Informes QA validados OT'}
+    ]
+  },
+  {
+    id:'M3', label:'M3', name:'Aplicación turística (APP)', empresa:'Proveedor adjudicatario',
+    color:'#993c1d', colorBg:'#faece7', importe:41926.50,
+    hitos:[
+      {id:'M3-H1',label:'H1',desc:'Diseño y arquitectura'},
+      {id:'M3-H2',label:'H2',desc:'Desarrollo e integración'},
+      {id:'M3-H3',label:'H3',desc:'Pruebas y publicación'},
+      {id:'M3-H4',label:'H4',desc:'Cierre y recepción'}
+    ],
+    entregables:[
+      {id:'M3-E01',code:'M3-E01',desc:'APP Cinco Villas (iOS + Android)',hito:'M3-H3',prtr:['ejecución material'],riesgo:'alto',indicador:'App publicada tiendas',ev_tipo:'Enlace tienda + capturas pantalla'},
+      {id:'M3-E02',code:'M3-E02',desc:'Integración CMS-PID-M3',hito:'M3-H2',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Informe integración validado OT'},
+      {id:'M3-E03',code:'M3-E03',desc:'Documentación técnica',hito:'M3-H4',prtr:['ejecución material'],riesgo:'bajo',indicador:'App publicada tiendas',ev_tipo:'Documento técnico completo'},
+      {id:'M3-E04',code:'M3-E04',desc:'Manual administrador',hito:'M3-H4',prtr:['ejecución material'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Manual entregado'},
+      {id:'M3-E05',code:'M3-E05',desc:'Manual usuario',hito:'M3-H4',prtr:['ejecución material'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Manual entregado'},
+      {id:'M3-E06',code:'M3-E06',desc:'Descripción APIs',hito:'M3-H2',prtr:['interoperabilidad PID'],riesgo:'medio',indicador:'Nodo PID conectado',ev_tipo:'OpenAPI spec validada OT'},
+      {id:'M3-E07',code:'M3-E07',desc:'Procedimientos despliegue',hito:'M3-H3',prtr:['ejecución material'],riesgo:'bajo',indicador:'App publicada tiendas',ev_tipo:'Runbook despliegue'},
+      {id:'M3-E08',code:'M3-E08',desc:'Procedimientos restauración',hito:'M3-H3',prtr:['seguridad PRTR'],riesgo:'bajo',indicador:'App publicada tiendas',ev_tipo:'Plan restauración'},
+      {id:'M3-E09',code:'M3-E09',desc:'Informe interoperabilidad',hito:'M3-H2',prtr:['interoperabilidad PID','UNE 178503'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Informe técnico validado OT'},
+      {id:'M3-E10',code:'M3-E10',desc:'Informe pruebas funcionales',hito:'M3-H3',prtr:['gate OT'],riesgo:'alto',indicador:'App publicada tiendas',ev_tipo:'Informe pruebas + trazabilidad'},
+      {id:'M3-E11',code:'M3-E11',desc:'Informe rendimiento',hito:'M3-H3',prtr:['gate OT'],riesgo:'medio',indicador:'App publicada tiendas',ev_tipo:'Resultados pruebas carga'},
+      {id:'M3-E12',code:'M3-E12',desc:'Informe seguridad',hito:'M3-H3',prtr:['seguridad PRTR','gate OT'],riesgo:'alto',indicador:'Cumplimiento normativo',ev_tipo:'Informe pentest / OWASP'},
+      {id:'M3-E13',code:'M3-E13',desc:'Evidencias correcciones',hito:'M3-H3',prtr:['gate OT'],riesgo:'medio',indicador:'App publicada tiendas',ev_tipo:'Issues cerrados + evidencia'},
+      {id:'M3-E14',code:'M3-E14',desc:'Acta aceptación provisional',hito:'M3-H3',prtr:['ejecución material','gate OT'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Acta firmada Comarca + OT'},
+      {id:'M3-E15',code:'M3-E15',desc:'Acta aceptación final',hito:'M3-H4',prtr:['Informe Conformidad PRTR'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Acta recepción definitiva firmada'}
+    ]
+  },
+  {
+    id:'M41', label:'M4.1', name:'Aforadores y flujos turísticos', empresa:'Proveedor adjudicatario',
+    color:'#3b6d11', colorBg:'#eaf3de', importe:88153.34,
+    hitos:[
+      {id:'M41-H1',label:'H1',desc:'Planificación e inicio'},
+      {id:'M41-H2',label:'H2',desc:'Instalación y puesta marcha'},
+      {id:'M41-H3',label:'H3',desc:'Integración y validación'},
+      {id:'M41-H4',label:'H4',desc:'Estabilización y cierre'}
+    ],
+    entregables:[
+      {id:'M41-E01',code:'E01',desc:'Plan implantación',hito:'M41-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Sensórica instalada',ev_tipo:'Plan aprobado OT'},
+      {id:'M41-E02',code:'E02',desc:'Cronograma',hito:'M41-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Cronograma detallado aprobado'},
+      {id:'M41-E03',code:'E03',desc:'Plan coordinación',hito:'M41-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Plan coordinación con módulos'},
+      {id:'M41-E04',code:'E04',desc:'Plan protección datos',hito:'M41-H1',prtr:['protección datos','RGPD'],riesgo:'alto',indicador:'Cumplimiento normativo',ev_tipo:'EIPD + plan RGPD aprobado'},
+      {id:'M41-E05',code:'E05',desc:'Informe instalación',hito:'M41-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Sensórica instalada',ev_tipo:'Informe técnico instalación'},
+      {id:'M41-E06',code:'E06',desc:'Registro georreferenciado',hito:'M41-H2',prtr:['ejecución material'],riesgo:'medio',indicador:'Sensórica instalada',ev_tipo:'Shapefile / KML con coordenadas'},
+      {id:'M41-E07',code:'E07',desc:'Evidencias fotográficas',hito:'M41-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Sensórica instalada',ev_tipo:'Fotos geolocalizadas por dispositivo'},
+      {id:'M41-E08',code:'E08',desc:'Certificado suministro',hito:'M41-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Sensórica instalada',ev_tipo:'Albarán / certificado fabricante'},
+      {id:'M41-E09',code:'E09',desc:'Informe calibración',hito:'M41-H2',prtr:['ejecución material'],riesgo:'medio',indicador:'Calidad del dato',ev_tipo:'Informe calibración y ajuste'},
+      {id:'M41-E10',code:'E10',desc:'Certificado integración M1',hito:'M41-H3',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Datos compartidos PID',ev_tipo:'Certificado validado OT + M1'},
+      {id:'M41-E11',code:'E11',desc:'Certificado integración PID',hito:'M41-H3',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Certificado integración SEGITTUR'},
+      {id:'M41-E12',code:'E12',desc:'Documentación API',hito:'M41-H3',prtr:['interoperabilidad PID'],riesgo:'medio',indicador:'Datos compartidos PID',ev_tipo:'API spec validada OT'},
+      {id:'M41-E13',code:'E13',desc:'Evidencia ENS',hito:'M41-H3',prtr:['seguridad PRTR'],riesgo:'alto',indicador:'Cumplimiento normativo',ev_tipo:'Declaración conformidad ENS'},
+      {id:'M41-E14',code:'E14',desc:'Manual técnico',hito:'M41-H4',prtr:['ejecución material'],riesgo:'bajo',indicador:'Sensórica instalada',ev_tipo:'Manual técnico entregado'},
+      {id:'M41-E15',code:'E15',desc:'Manual usuario',hito:'M41-H4',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Manual usuario entregado'},
+      {id:'M41-E16',code:'E16',desc:'Informe formación',hito:'M41-H4',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Acta formación + listado asistentes'},
+      {id:'M41-E17',code:'E17',desc:'EIPD',hito:'M41-H1',prtr:['protección datos'],riesgo:'alto',indicador:'Cumplimiento normativo',ev_tipo:'Evaluación Impacto Protección Datos'},
+      {id:'M41-E18',code:'E18',desc:'Acta puesta producción',hito:'M41-H4',prtr:['ejecución material','gate OT'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Acta firmada OT'},
+      {id:'M41-E19',code:'E19',desc:'Informe estabilización',hito:'M41-H4',prtr:['ejecución material'],riesgo:'medio',indicador:'Calidad del dato',ev_tipo:'Informe período estabilización'},
+      {id:'M41-E20',code:'E20',desc:'Informe calidad dato',hito:'M41-H4',prtr:['gobierno del dato'],riesgo:'alto',indicador:'Calidad del dato',ev_tipo:'Informe calidad validado OT'},
+      {id:'M41-E21',code:'E21',desc:'Plan gobernanza dato',hito:'M41-H4',prtr:['gobierno del dato'],riesgo:'alto',indicador:'Datos compartidos PID',ev_tipo:'Plan gobernanza aprobado'},
+      {id:'M41-E22',code:'E22',desc:'Acta recepción definitiva',hito:'M41-H4',prtr:['Informe Conformidad PRTR'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Acta recepción definitiva firmada'}
+    ]
+  },
+  {
+    id:'M42', label:'M4.2', name:'Interacción digital avanzada', empresa:'Proveedor adjudicatario',
+    color:'#854f0b', colorBg:'#faeeda', importe:86945.76,
+    hitos:[
+      {id:'M42-H1',label:'H1',desc:'Análisis y diseño'},
+      {id:'M42-H2',label:'H2',desc:'Fabricación e instalación'},
+      {id:'M42-H3',label:'H3',desc:'Integración y validación'},
+      {id:'M42-H4',label:'H4',desc:'Estabilización y cierre'}
+    ],
+    entregables:[
+      {id:'M42-E01',code:'E01',desc:'Informe análisis técnico',hito:'M42-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Informe análisis aprobado OT'},
+      {id:'M42-E02',code:'E02',desc:'Emplazamientos definitivos',hito:'M42-H1',prtr:['ejecución material'],riesgo:'alto',indicador:'Interacción digital',ev_tipo:'Listado emplazamientos validado OT'},
+      {id:'M42-E03',code:'E03',desc:'Plan implantación',hito:'M42-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Plan detallado aprobado OT'},
+      {id:'M42-E04',code:'E04',desc:'Cronograma',hito:'M42-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Cronograma validado'},
+      {id:'M42-E05',code:'E05',desc:'Plan comunicación',hito:'M42-H1',prtr:['publicidad PRTR'],riesgo:'bajo',indicador:'Seguimiento',ev_tipo:'Plan comunicación aprobado'},
+      {id:'M42-E06',code:'E06',desc:'Plan coordinación',hito:'M42-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Plan coordinación módulos'},
+      {id:'M42-E07',code:'E07',desc:'Diseño visual validado',hito:'M42-H1',prtr:['ejecución material'],riesgo:'medio',indicador:'Interacción digital',ev_tipo:'Diseño aprobado Comarca + OT'},
+      {id:'M42-E08',code:'E08',desc:'Mockups',hito:'M42-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Interacción digital',ev_tipo:'Mockups aprobados'},
+      {id:'M42-E09',code:'E09',desc:'Informe instalación',hito:'M42-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Interacción digital',ev_tipo:'Informe instalación técnico'},
+      {id:'M42-E10',code:'E10',desc:'Registro georreferenciado',hito:'M42-H2',prtr:['ejecución material'],riesgo:'medio',indicador:'Interacción digital',ev_tipo:'GIS / coordenadas dispositivos'},
+      {id:'M42-E11',code:'E11',desc:'Evidencias fotográficas',hito:'M42-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Interacción digital',ev_tipo:'Fotos instalación cada dispositivo'},
+      {id:'M42-E12',code:'E12',desc:'Certificado suministro',hito:'M42-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Interacción digital',ev_tipo:'Albarán / certificado'},
+      {id:'M42-E13',code:'E13',desc:'Informes validación',hito:'M42-H3',prtr:['gate OT'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Informes validación funcional OT'},
+      {id:'M42-E14',code:'E14',desc:'Integración M1',hito:'M42-H3',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Certificado integración M1'},
+      {id:'M42-E15',code:'E15',desc:'Integración M3',hito:'M42-H3',prtr:['interoperabilidad PID'],riesgo:'medio',indicador:'Nodo PID conectado',ev_tipo:'Certificado integración M3'},
+      {id:'M42-E16',code:'E16',desc:'Integración M4.1',hito:'M42-H3',prtr:['interoperabilidad PID'],riesgo:'medio',indicador:'Nodo PID conectado',ev_tipo:'Certificado integración M4.1'},
+      {id:'M42-E17',code:'E17',desc:'Integración PID',hito:'M42-H3',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Certificado SEGITTUR'},
+      {id:'M42-E18',code:'E18',desc:'Manual técnico',hito:'M42-H4',prtr:['ejecución material'],riesgo:'bajo',indicador:'Interacción digital',ev_tipo:'Manual técnico entregado'},
+      {id:'M42-E19',code:'E19',desc:'Manual usuario',hito:'M42-H4',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Manual usuario entregado'},
+      {id:'M42-E20',code:'E20',desc:'Informe formación',hito:'M42-H4',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Acta formación + asistentes'},
+      {id:'M42-E21',code:'E21',desc:'Acta puesta producción',hito:'M42-H4',prtr:['gate OT'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Acta firmada OT + Comarca'},
+      {id:'M42-E22',code:'E22',desc:'Informe estabilización',hito:'M42-H4',prtr:['ejecución material'],riesgo:'medio',indicador:'Interacción digital',ev_tipo:'Informe período estabilización'},
+      {id:'M42-E23',code:'E23',desc:'Acta recepción definitiva',hito:'M42-H4',prtr:['Informe Conformidad PRTR'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Acta recepción definitiva firmada'}
+    ]
+  },
+  {
+    id:'M43', label:'M4.3', name:'Visita autónoma e interpretación (L1+L2)', empresa:'Proveedor adjudicatario',
+    color:'#72243e', colorBg:'#fbeaf0', importe:96146.60,
+    hitos:[
+      {id:'M43-H1',label:'H1',desc:'Proyecto técnico y planificación'},
+      {id:'M43-H2',label:'H2',desc:'Desarrollo e implantación (L1+L2)'},
+      {id:'M43-H3',label:'H3',desc:'Integración y validación'},
+      {id:'M43-H4',label:'H4',desc:'Cierre y recepción'}
+    ],
+    entregables:[
+      {id:'M43-E01',code:'E01',desc:'Proyecto Técnico Implantación',hito:'M43-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Proyecto técnico aprobado OT'},
+      {id:'M43-E02',code:'E02',desc:'Cronograma detallado',hito:'M43-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación',ev_tipo:'Cronograma validado OT'},
+      {id:'M43-E03',code:'E03',desc:'Documentación técnica solución',hito:'M43-H2',prtr:['ejecución material'],riesgo:'bajo',indicador:'Visita autónoma operativa',ev_tipo:'Documentación técnica completa'},
+      {id:'M43-E04',code:'E04',desc:'Documentación integración',hito:'M43-H3',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Doc. integración validada OT'},
+      {id:'M43-E05',code:'E05',desc:'Manuales',hito:'M43-H4',prtr:['ejecución material'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Manuales técnico y usuario'},
+      {id:'M43-E06',code:'E06',desc:'Informes pruebas',hito:'M43-H3',prtr:['gate OT'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Informes pruebas funcionales'},
+      {id:'M43-E07',code:'E07',desc:'Documentación formación',hito:'M43-H4',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación',ev_tipo:'Materiales + acta formación'},
+      {id:'M43-E08',code:'E08',desc:'Informe final ejecución',hito:'M43-H4',prtr:['Informe Conformidad PRTR'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Informe final validado OT'},
+      {id:'M43-E09',code:'E09',desc:'Sistema integrado (L1+L2)',hito:'M43-H3',prtr:['ejecución material','interoperabilidad PID'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Evidencia sistema en producción'},
+      {id:'M43-E10',code:'E10',desc:'Configuración funcional global',hito:'M43-H3',prtr:['ejecución material'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Captura config + log arranque'},
+      {id:'M43-E11',code:'E11',desc:'Evidencias funcionamiento',hito:'M43-H3',prtr:['ejecución material'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Vídeo o demo funcionamiento'},
+      {id:'M43-E12',code:'E12',desc:'Integración M1-M2-M3',hito:'M43-H3',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Certificado integración conjunto'},
+      {id:'M43-E13',code:'E13',desc:'Evidencias transmisión datos',hito:'M43-H3',prtr:['gobierno del dato'],riesgo:'alto',indicador:'Datos compartidos PID',ev_tipo:'Log transmisión + validación SEGITTUR'},
+      {id:'M43-E14',code:'E14',desc:'Arquitectura final implantada',hito:'M43-H4',prtr:['ejecución material'],riesgo:'bajo',indicador:'Visita autónoma operativa',ev_tipo:'Diagrama arquitectura as-built'},
+      {id:'M43-L1E01',code:'L1-E01',desc:'[L1] Inventario dispositivos',hito:'M43-H2',prtr:['ejecución material'],riesgo:'medio',indicador:'Sensórica instalada',ev_tipo:'Inventario firmado con nº serie'},
+      {id:'M43-L1E02',code:'L1-E02',desc:'[L1] Doc. técnica dispositivos',hito:'M43-H2',prtr:['ejecución material'],riesgo:'bajo',indicador:'Sensórica instalada',ev_tipo:'Fichas técnicas por dispositivo'},
+      {id:'M43-L1E03',code:'L1-E03',desc:'[L1] Configuración accesos',hito:'M43-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Config accesos validada + evidencia'},
+      {id:'M43-L1E04',code:'L1-E04',desc:'[L1] Configuración activaciones',hito:'M43-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Config activaciones validada'},
+      {id:'M43-L1E05',code:'L1-E05',desc:'[L1] Documentación eventos generados',hito:'M43-H3',prtr:['gobierno del dato'],riesgo:'medio',indicador:'Datos compartidos PID',ev_tipo:'Log eventos en plataforma'},
+      {id:'M43-L1E06',code:'L1-E06',desc:'[L1] Evidencias funcionamiento accesos',hito:'M43-H3',prtr:['ejecución material'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Vídeo/demo accesos operativos'},
+      {id:'M43-L2E01',code:'L2-E01',desc:'[L2] Contenidos interpretativos',hito:'M43-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Guión + contenidos aprobados OT'},
+      {id:'M43-L2E02',code:'L2-E02',desc:'[L2] Estructura contenidos',hito:'M43-H2',prtr:['ejecución material'],riesgo:'medio',indicador:'Visita autónoma operativa',ev_tipo:'Árbol estructura aprobado'},
+      {id:'M43-L2E03',code:'L2-E03',desc:'[L2] Audioguías',hito:'M43-H2',prtr:['ejecución material'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Archivos audio + transcripciones'},
+      {id:'M43-L2E04',code:'L2-E04',desc:'[L2] Gamificación',hito:'M43-H2',prtr:['ejecución material'],riesgo:'medio',indicador:'Visita autónoma operativa',ev_tipo:'Mecánicas gamificación operativas'},
+      {id:'M43-L2E05',code:'L2-E05',desc:'[L2] Doc. funcional experiencia',hito:'M43-H2',prtr:['ejecución material'],riesgo:'bajo',indicador:'Visita autónoma operativa',ev_tipo:'Documento funcional validado'},
+      {id:'M43-L2E06',code:'L2-E06',desc:'[L2] Evidencias integración APP',hito:'M43-H3',prtr:['interoperabilidad PID'],riesgo:'alto',indicador:'Nodo PID conectado',ev_tipo:'Captura integración en APP M3'},
+      {id:'M43-L2E07',code:'L2-E07',desc:'[L2] Evidencias interacción usuario',hito:'M43-H3',prtr:['ejecución material'],riesgo:'medio',indicador:'Visita autónoma operativa',ev_tipo:'Sesión usuario documentada'},
+      {id:'M43-L2E08',code:'L2-E08',desc:'[L2] Evidencias funcionamiento experiencia',hito:'M43-H4',prtr:['ejecución material'],riesgo:'alto',indicador:'Visita autónoma operativa',ev_tipo:'Demo completa + acta validación'}
+    ]
+  },
+  {
+    id:'M5', label:'M5', tag:'M5',
+    name:'Plan Formativo', empresa:'Proveedor (pendiente de adjudicar)',
+    color:'#6c3483', colorBg:'#f5eef8',
+    importe: 35090.00,
+    hitos:[
+      {id:'M5-H1', label:'H1', desc:'Adjudicación y planificación'},
+      {id:'M5-H2', label:'H2', desc:'Ejecución de jornadas formativas'},
+      {id:'M5-H3', label:'H3', desc:'Soporte post-proyecto y cierre'}
+    ],
+    entregables:[
+      {id:'M5-E01',code:'M5-E01',desc:'Adjudicación y formalización contrato',hito:'M5-H1',prtr:['ejecución material'],riesgo:'alto',indicador:'Planificación',ev_tipo:'Resolución adjudicación + contrato firmado'},
+      {id:'M5-E02',code:'M5-E02',desc:'Plan formativo detallado aprobado',hito:'M5-H1',prtr:['ejecución material'],riesgo:'bajo',indicador:'Planificación formación',ev_tipo:'Plan aprobado por OT'},
+      {id:'M5-E03',code:'M5-E03',desc:'Materiales formativos entregados',hito:'M5-H2',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación agentes',ev_tipo:'Presentaciones, guías, recursos entregados'},
+      {id:'M5-E04',code:'M5-E04',desc:'Jornada 1 — Gestores comarca',hito:'M5-H2',prtr:['capacitación'],riesgo:'alto',indicador:'Capacitación agentes',ev_tipo:'Lista asistencia firmada + acta jornada'},
+      {id:'M5-E05',code:'M5-E05',desc:'Jornada 2 — Técnicos de turismo',hito:'M5-H2',prtr:['capacitación'],riesgo:'alto',indicador:'Capacitación agentes',ev_tipo:'Lista asistencia firmada + acta jornada'},
+      {id:'M5-E06',code:'M5-E06',desc:'Jornada 3 — Empresas turísticas',hito:'M5-H2',prtr:['capacitación'],riesgo:'alto',indicador:'Capacitación agentes',ev_tipo:'Lista asistencia firmada + acta jornada'},
+      {id:'M5-E07',code:'M5-E07',desc:'Jornada 4 — Ciudadanía / visitantes',hito:'M5-H2',prtr:['capacitación'],riesgo:'alto',indicador:'Capacitación agentes',ev_tipo:'Lista asistencia firmada + acta jornada'},
+      {id:'M5-E08',code:'M5-E08',desc:'Evaluaciones de satisfacción',hito:'M5-H2',prtr:['capacitación'],riesgo:'medio',indicador:'Capacitación agentes',ev_tipo:'Cuestionarios + informe resultados'},
+      {id:'M5-E09',code:'M5-E09',desc:'Informe soporte docente post-proyecto (jul–dic 2026)',hito:'M5-H3',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación agentes',ev_tipo:'Informe actividad + registros consultas'},
+      {id:'M5-E10',code:'M5-E10',desc:'Informe final de cierre formación',hito:'M5-H3',prtr:['Informe Conformidad PRTR','gate OT'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Informe final validado por OT'}
+    ]
+  }
+];
+
+// ── CIERRE SLOTS (transversal a todos los módulos) ────────────
+const CIERRE_SLOTS = [
+  {key:'inf',  icon:'📄', label:'Informe final de cierre del proveedor',
+   desc:'Documento emitido por el proveedor al finalizar el contrato, describiendo todo lo ejecutado.',
+   ev_tipo:'Informe técnico firmado por el proveedor'},
+  {key:'acta', icon:'✅', label:'Acta de recepción y conformidad (OT)',
+   desc:'Documento elaborado por la Oficina Técnica que certifica la recepción conforme de los trabajos.',
+   ev_tipo:'Acta firmada por OT y Comarca'},
+  {key:'fac',  icon:'💶', label:'Factura(s) del proveedor',
+   desc:'Una o varias facturas emitidas por el proveedor durante el período de ejecución del contrato.',
+   ev_tipo:'Facturas con número, fecha, importe y concepto', multi:true},
+  {key:'pago', icon:'🏦', label:'Justificante(s) de pago',
+   desc:'Comprobantes bancarios que acreditan el pago efectivo de las facturas del proveedor.',
+   ev_tipo:'Transferencias bancarias, recibos o certificados de pago', multi:true}
+];
+
+// ── STATE ─────────────────────────────────────────────────────
+let S = {};
+
+function initState() {
+  const raw = localStorage.getItem('idcatt-v5');
+  if (raw) { try { S = JSON.parse(raw); return; } catch(e){} }
+  MODULES.forEach(m => {
+    if (m.isGlobal) return;
+    (m.entregables||[]).forEach(e => {
+      S[e.id] = {active:true, status:'pendiente', resp:'', fecha:'', obs:'', docs:[]};
+    });
+    // Cierre slots per module
+    if (!S['cierre_'+m.id]) S['cierre_'+m.id] = {};
+    CIERRE_SLOTS.forEach(sl => {
+      if (!S['cierre_'+m.id][sl.key]) S['cierre_'+m.id][sl.key] = {status:'pendiente', docs:[]};
+    });
+  });
+}
+
+function persist() {
+  localStorage.setItem('idcatt-v5', JSON.stringify(S));
+  const t = document.getElementById('toast');
+  t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'), 1400);
+  updateHeader();
+  updateSb();
+}
+
+// ── SHEETS SYNC ──────────────────────────────────────────────
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz67eCuYgiEKdguv_O_wsg_Vj0qn7nFedxw1yAYkvQeu0FQH1w-EwDzZYIWyOdlVH8l/exec';
+let SYNC_USER = null;
+let SYNC_ONLINE = false;
+let SYNC_PENDING = []; // queue of changes when offline
+
+function syncInit() {
+  updateSyncBadge('⏳ Conectando..', '#f0c060');
+  fetch(WEB_APP_URL, {method:'GET', mode:'no-cors'})
+    .then(() => {
+      // no-cors means we can't read response — use iframe trick for auth check
+      loadFromSheet();
+    })
+    .catch(() => {
+      updateSyncBadge('⚠️ Sin conexión — modo local', '#e89090');
+      SYNC_ONLINE = false;
+      initState(); updateSb(); updateHeader(); showGlobal();
+    });
+}
+
+function loadFromSheet() {
+  // Use a hidden iframe to trigger Google auth if needed, then fetch data
+  updateSyncBadge('⏳ Cargando datos..', '#f0c060');
+  
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {'Content-Type': 'text/plain'},
+    body: JSON.stringify({accion: 'leerDatos'})
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      SYNC_USER = data.user || 'Usuario';
+      SYNC_ONLINE = true;
+      // Merge Sheet data into local state
+      mergeSheetData(data.datos);
+      updateSyncBadge('🟢 ' + SYNC_USER.split('@')[0], '#7ec99a');
+      updateSb(); updateHeader(); showGlobal();
+    } else if (data.error && data.error.includes('autorizado')) {
+      updateSyncBadge('🔒 No autorizado', '#e89090');
+      showAuthError(data.error);
+    } else {
+      // Likely needs Google login — open auth popup
+      openAuthPopup();
+    }
+  })
+  .catch(() => {
+    // CORS blocked = needs auth, open popup
+    openAuthPopup();
+  });
+}
+
+function openAuthPopup() {
+  updateSyncBadge('🔑 Iniciando sesión..', '#f0c060');
+  const popup = window.open(WEB_APP_URL, 'auth', 'width=500,height=600');
+  
+  // Poll until popup closes (user has logged in)
+  const poll = setInterval(() => {
+    if (!popup || popup.closed) {
+      clearInterval(poll);
+      setTimeout(() => loadFromSheet(), 1000);
+    }
+  }, 500);
+}
+
+function mergeSheetData(sheetData) {
+  // sheetData: { M0: {entregables:[...], cierre:{...}}, M1: ... }
+  if (!sheetData) return;
+  
+  Object.entries(sheetData).forEach(([modId, modData]) => {
+    // Entregables técnicos
+    (modData.entregables || []).forEach(e => {
+      if (!e.code) return;
+      // Find matching entregable by code
+      let entId = null;
+      MODULES.forEach(m => {
+        (m.entregables||[]).forEach(ent => {
+          if (ent.code === e.code || ent.id === e.code) entId = ent.id;
+        });
+      });
+      if (!entId) return;
+      if (!S[entId]) S[entId] = {active:true,status:'pendiente',resp:'',fecha:'',obs:'',docs:[]};
+      S[entId].active = e.active !== false;
+      S[entId].status = e.status || 'pendiente';
+      S[entId].resp   = e.resp || '';
+      S[entId].fecha  = e.fecha || '';
+      S[entId].obs    = e.obs || '';
+      if (e.doc_nombre) {
+        // Convert flat doc fields to docs array format
+        const existing = (S[entId].docs||[]).find(d=>d.name===e.doc_nombre);
+        if (!existing && e.doc_nombre) {
+          S[entId].docs = [{id:'sheet_1', name:e.doc_nombre, url:e.doc_url||'', tipo:'', fecha:'', obs:''}];
+        }
+      }
+    });
+    
+    // Cierre slots
+    if (modData.cierre) {
+      const ck = 'cierre_'+modId;
+      if (!S[ck]) S[ck] = {};
+      Object.entries(modData.cierre).forEach(([key, val]) => {
+        if (!S[ck][key]) S[ck][key] = {status:'pendiente',docs:[]};
+        S[ck][key].status = val.status || 'pendiente';
+        // Preserve existing docs array, but update from sheet if sheet has data
+        if (val.doc1_nombre && !S[ck][key].docs.find(d=>d.name===val.doc1_nombre)) {
+          S[ck][key].docs.push({id:'sheet_d1',name:val.doc1_nombre,url:val.doc1_url||'',tipo:'',fecha:val.importe?'':'',obs:''});
+        }
+        if (val.doc2_nombre && !S[ck][key].docs.find(d=>d.name===val.doc2_nombre)) {
+          S[ck][key].docs.push({id:'sheet_d2',name:val.doc2_nombre,url:val.doc2_url||'',tipo:'',fecha:'',obs:''});
+        }
+        if (val.importe) S[ck][key].importe = val.importe;
+        if (val.obs)     S[ck][key].obs_cierre = val.obs;
+      });
+    }
+  });
+  
+  localStorage.setItem('idcatt-v5', JSON.stringify(S));
+}
+
+function syncToSheet(accion, payload) {
+  if (!SYNC_ONLINE) {
+    SYNC_PENDING.push({accion, payload});
+    return;
+  }
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {'Content-Type': 'text/plain'},
+    body: JSON.stringify({accion, ...payload})
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (!data.ok) console.warn('Sync error:', data.error);
+  })
+  .catch(err => {
+    console.warn('Sync failed, queued:', err);
+    SYNC_PENDING.push({accion, payload});
+    updateSyncBadge('⚠️ Guardando local..', '#f0c060');
+  });
+}
+
+// Patch cycleStatus to also sync
+const _origCycleStatus = cycleStatus;
+window.cycleStatus = function(id, el) {
+  _origCycleStatus(id, el);
+  // Find module and code for this entId
+  let code = null, modId = null;
+  MODULES.forEach(m => {
+    (m.entregables||[]).forEach(e => {
+      if (e.id === id) { code = e.code; modId = m.id; }
+    });
+  });
+  if (code && modId) {
+    syncToSheet('actualizarEntregable', {modId, code, campo:'status', valor: getE(id).status});
+  }
+};
+
+// Patch cycleCierreStatus to also sync
+const _origCycleCierre = cycleCierreStatus;
+window.cycleCierreStatus = function(modId, key, el) {
+  _origCycleCierre(modId, key, el);
+  syncToSheet('actualizarCierre', {modId, slotKey:key, campo:'status', valor: getCierre(modId,key).status});
+};
+
+// Patch handleEdit to also sync
+const _origHandleEdit = handleEdit;
+window.handleEdit = function(el) {
+  _origHandleEdit(el);
+  const id = el.dataset.id, f = el.dataset.f;
+  let code = null, modId = null;
+  MODULES.forEach(m => {
+    (m.entregables||[]).forEach(e => {
+      if (e.id === id) { code = e.code; modId = m.id; }
+    });
+  });
+  if (code && modId) {
+    syncToSheet('actualizarEntregable', {modId, code, campo:f, valor: getE(id)[f]||''});
+  }
+};
+
+function updateSyncBadge(text, color) {
+  const badge = document.getElementById('sync-badge');
+  if (badge) { badge.textContent = text; badge.style.color = color; }
+}
+
+function showAuthError(msg) {
+  document.getElementById('main').innerHTML =
+    '<div style="padding:40px;text-align:center"><div style="font-size:48px;margin-bottom:16px">🔒</div>' +
+    '<h2 style="margin-bottom:8px">Acceso no autorizado</h2>' +
+    '<p style="color:#5c5a55">'+msg+'</p></div>';
+}
+
+function getE(id) {
+  if (!S[id]) S[id] = {active:true, status:'pendiente', resp:'', fecha:'', obs:'', docs:[]};
+  if (S[id].active === undefined) S[id].active = true;
+  if (!S[id].docs) S[id].docs = [];
+  return S[id];
+}
+
+function getCierre(modId, key) {
+  const k = 'cierre_'+modId;
+  if (!S[k]) S[k] = {};
+  if (!S[k][key]) S[k][key] = {status:'pendiente', docs:[]};
+  return S[k][key];
+}
+
+function totalDocs() {
+  let n = 0;
+  Object.values(S).forEach(v => {
+    if (Array.isArray(v.docs)) n += v.docs.length;
+    else if (v && typeof v === 'object') {
+      Object.values(v).forEach(sl => { if (sl && Array.isArray(sl.docs)) n += sl.docs.length; });
+    }
+  });
+  return n;
+}
+
+// ── STATUS ────────────────────────────────────────────────────
+const SC = ['pendiente','en-curso','completado'];
+const SL = {pendiente:'Pendiente','en-curso':'En curso',completado:'Completado'};
+
+function cycleStatus(id, el) {
+  const e = getE(id);
+  const i = SC.indexOf(e.status||'pendiente');
+  e.status = SC[(i+1)%3];
+  persist();
+  el.className = 'badge ' + e.status;
+  el.textContent = SL[e.status];
+}
+
+function cycleCierreStatus(modId, key, el) {
+  const c = getCierre(modId, key);
+  const i = SC.indexOf(c.status||'pendiente');
+  c.status = SC[(i+1)%3];
+  persist();
+  el.className = 'badge ' + c.status;
+  el.textContent = SL[c.status];
+}
+
+function toggleActive(id, chk) {
+  getE(id).active = chk.checked;
+  persist();
+  const row = document.getElementById('row_'+id);
+  if (row) row.classList.toggle('disabled-row', !chk.checked);
+}
+
+function handleEdit(el) {
+  const id = el.dataset.id, f = el.dataset.f;
+  getE(id)[f] = el.innerText.trim();
+  persist();
+  el.classList.toggle('e', !el.innerText.trim());
+}
+
+// ── STATS ─────────────────────────────────────────────────────
+function modStats(mod) {
+  const active = (mod.entregables||[]).filter(e => getE(e.id).active !== false);
+  let done=0,cur=0,pend=0,docs=0;
+  active.forEach(e => {
+    const st = getE(e.id).status||'pendiente';
+    if(st==='completado')done++; else if(st==='en-curso')cur++; else pend++;
+    docs += (getE(e.id).docs||[]).length;
+  });
+  // Add cierre docs
+  const ck = 'cierre_'+mod.id;
+  if (S[ck]) Object.values(S[ck]).forEach(sl => { docs += (sl.docs||[]).length; });
+  const tot = active.length;
+  return {tot,done,cur,pend,docs,pct:tot?Math.round(done/tot*100):0};
+}
+
+function gStats() {
+  let tot=0,done=0,cur=0,pend=0,docs=0;
+  MODULES.forEach(m => {
+    if(m.isGlobal) return;
+    const s = modStats(m);
+    tot+=s.tot; done+=s.done; cur+=s.cur; pend+=s.pend; docs+=s.docs;
+  });
+  return {tot,done,cur,pend,docs,pct:tot?Math.round(done/tot*100):0};
+}
+
+function updateHeader() {
+  const s = gStats();
+  document.getElementById('gs-t').textContent   = s.tot;
+  document.getElementById('gs-d').textContent   = s.done;
+  document.getElementById('gs-c').textContent   = s.cur;
+  document.getElementById('gs-p').textContent   = s.pend;
+  document.getElementById('gs-doc').textContent = s.docs;
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+let CUR = 'global', CUR_TAB = 'tec';
+
+function updateSb() {
+  const sb = document.getElementById('sb');
+  sb.innerHTML = '<div class="sb-sec">Módulos del proyecto</div>';
+  MODULES.forEach(mod => {
+    const s = mod.isGlobal ? gStats() : modStats(mod);
+    const pc = s.pct===100?'var(--gn)':s.pct>50?'var(--am)':'var(--rd)';
+    const btn = document.createElement('button');
+    btn.className = 'nav'+(CUR===mod.id?' on':'');
+    btn.onclick = () => go(mod.id);
+    btn.innerHTML =
+      `<span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:${mod.colorBg||'#eaf1f8'};color:${mod.color||'#1a5276'};min-width:30px;text-align:center;flex-shrink:0">${mod.label}</span>`+
+      `<div class="ni"><div style="font-size:11px;line-height:1.3">${mod.name}</div>`+
+      (mod.isGlobal?'':
+        `<div class="npb"><div class="npf" style="width:${s.pct}%;background:${pc}"></div></div>`)+
+      `</div><span class="nb">${mod.isGlobal?s.tot:s.done+'/'+s.tot}</span>`;
+    sb.appendChild(btn);
+  });
+}
+
+function go(id) {
+  CUR = id; CUR_TAB = 'tec';
+  updateSb();
+  const mod = MODULES.find(m=>m.id===id);
+  if (!mod) return;
+  mod.isGlobal ? showGlobal() : showModule(mod);
+}
+
+// ── GLOBAL ────────────────────────────────────────────────────
+function showGlobal() {
+  const s = gStats();
+  let h = `<div class="sh"><h2>Resumen global del proyecto</h2>
+    <div class="sm"><span>Entregables activos: <strong>${s.tot}</strong></span><span>Documentos: <strong style="color:var(--bl)">${s.docs}</strong></span></div></div>
+    <div class="sr">
+      <div class="sc g"><div class="sl">Completado</div><div class="sv">${s.pct}%</div><div class="ss">${s.done} de ${s.tot}</div></div>
+      <div class="sc a"><div class="sl">En curso</div><div class="sv">${s.cur}</div></div>
+      <div class="sc r"><div class="sl">Pendiente</div><div class="sv">${s.pend}</div></div>
+      <div class="sc b"><div class="sl">Documentos</div><div class="sv">${s.docs}</div></div>
+    </div>`;
+  MODULES.filter(m=>!m.isGlobal).forEach(mod => {
+    const ms = modStats(mod);
+    const pc = ms.pct===100?'var(--gn)':ms.pct>50?'var(--am)':'var(--rd)';
+    h += `<div class="gc" onclick="go('${mod.id}')"><div class="gc-hdr">
+      <span class="mtag" style="background:${mod.colorBg};color:${mod.color}">${mod.label}</span>
+      <div class="mn" style="flex:1"><strong>${mod.name}</strong><small>${mod.empresa}</small></div>
+      ${mod.importe?`<div style="font-size:11px;color:var(--tx2);text-align:right;white-space:nowrap"><small>Adj.</small><br><strong style="font-size:13px;color:var(--tx)">${mod.importe.toLocaleString('es-ES',{minimumFractionDigits:2})} €</strong></div>`:''}
+      <div style="font-size:11px;color:var(--bl);white-space:nowrap">${ms.docs} docs</div>
+      <div class="mpb"><div class="mbar"><div class="mbf" style="width:${ms.pct}%;background:${pc}"></div></div><span class="mpct" style="color:${pc}">${ms.pct}%</span></div>
+      <span style="color:var(--tx3)">→</span>
+    </div></div>`;
+  });
+  document.getElementById('main').innerHTML = h;
+}
+
+// ── MODULE ────────────────────────────────────────────────────
+let fSt='all',fHi='all',fRk='all',fTx='',fAct='all';
+
+function showModule(mod) {
+  fSt='all'; fHi='all'; fRk='all'; fTx=''; fAct='all';
+  CUR_TAB = 'tec';
+  renderModuleShell(mod);
+  renderTecTab(mod);
+}
+
+function renderModuleShell(mod) {
+  const s = modStats(mod);
+  const pc = s.pct===100?'var(--gn)':s.pct>50?'var(--am)':'var(--rd)';
+  const nActive = (mod.entregables||[]).filter(e=>getE(e.id).active!==false).length;
+  const nTotal  = (mod.entregables||[]).length;
+
+  let h = `<div class="sh">
+    <h2><span style="background:${mod.colorBg};color:${mod.color};padding:2px 8px;border-radius:4px;font-size:13px;margin-right:8px">${mod.label}</span>${mod.name}</h2>
+    <div class="sm">
+      <span>${mod.empresa}</span>
+      ${mod.importe?`<span>Adj.: <strong>${mod.importe.toLocaleString('es-ES',{minimumFractionDigits:2})} €</strong></span>`:''}
+      <span>Avance: <strong style="color:${pc}">${s.done}/${s.tot} (${s.pct}%)</strong></span>
+      <span>Entregables activos: <strong>${nActive}/${nTotal}</strong></span>
+      <span>Docs: <strong style="color:var(--bl)">${s.docs}</strong></span>
+    </div></div>`;
+
+  // Hito cards
+  if (mod.hitos&&mod.hitos.length) {
+    h += '<div class="hgrid">';
+    mod.hitos.forEach(hi => {
+      const its = (mod.entregables||[]).filter(e=>e.hito===hi.id&&getE(e.id).active!==false);
+      const dn  = its.filter(e=>getE(e.id).status==='completado').length;
+      const pp  = its.length?Math.round(dn/its.length*100):0;
+      const cc  = pp===100?'var(--gn)':pp>0?'var(--am)':'var(--tx3)';
+      h += `<div class="hc"><div class="hc-tag" style="color:${mod.color}">${hi.label}</div>
+        <div class="hc-desc">${hi.desc}</div>
+        <div class="hc-stat" style="color:${cc}">${dn}/${its.length} · ${pp}%</div></div>`;
+    });
+    h += '</div>';
+  }
+
+  // Tabs
+  const cierreDocCount = (() => {
+    let n=0;
+    const ck='cierre_'+mod.id;
+    if(S[ck]) Object.values(S[ck]).forEach(sl=>{ n+=(sl.docs||[]).length; });
+    return n;
+  })();
+
+  h += `<div class="mod-tabs">
+    <button class="mod-tab on" id="tab-tec" onclick="switchTab('${mod.id}','tec')">
+      Entregables técnicos <span class="tab-cnt">${nActive}</span>
+    </button>
+    <button class="mod-tab" id="tab-cierre" onclick="switchTab('${mod.id}','cierre')">
+      Cierre del contrato <span class="tab-cnt">${cierreDocCount > 0 ? cierreDocCount+' docs' : '4 hitos'}</span>
+    </button>
+  </div>
+  <div id="tab-content"></div>`;
+
+  document.getElementById('main').innerHTML = h;
+}
+
+function switchTab(modId, tab) {
+  CUR_TAB = tab;
+  document.getElementById('tab-tec').classList.toggle('on', tab==='tec');
+  document.getElementById('tab-cierre').classList.toggle('on', tab==='cierre');
+  const mod = MODULES.find(m=>m.id===modId);
+  if (tab==='tec') renderTecTab(mod);
+  else renderCierreTab(mod);
+}
+
+// ── ENTREGABLES TAB ───────────────────────────────────────────
+function renderTecTab(mod) {
+  const hiOpts = (mod.hitos||[]).map(h=>`<option value="${h.id}">${h.label}: ${h.desc}</option>`).join('');
+  let h = `<div class="fb">
+    <label>Estado:</label>
+    <select onchange="fSt=this.value;drawTable('${mod.id}')">
+      <option value="all">Todos</option><option value="pendiente">Pendiente</option>
+      <option value="en-curso">En curso</option><option value="completado">Completado</option>
+    </select>
+    ${mod.hitos&&mod.hitos.length?`<label>Hito:</label><select onchange="fHi=this.value;drawTable('${mod.id}')"><option value="all">Todos</option>${hiOpts}</select>`:''}
+    <label>Riesgo:</label>
+    <select onchange="fRk=this.value;drawTable('${mod.id}')">
+      <option value="all">Todos</option><option value="alto">Alto</option><option value="medio">Medio</option><option value="bajo">Bajo</option>
+    </select>
+    <label>Activos:</label>
+    <select onchange="fAct=this.value;drawTable('${mod.id}')">
+      <option value="all">Todos</option><option value="active">Solo activos</option><option value="inactive">Solo inactivos</option>
+    </select>
+    <input type="text" placeholder="Buscar..." oninput="fTx=this.value;drawTable('${mod.id}')" style="width:130px">
+  </div>
+  <div id="tbl"></div>`;
+  document.getElementById('tab-content').innerHTML = h;
+  drawTable(mod.id);
+}
+
+function drawTable(modId) {
+  const mod = MODULES.find(m=>m.id===modId);
+  const hiMap={}; (mod.hitos||[]).forEach(h=>hiMap[h.id]=h);
+  const items = (mod.entregables||[]).filter(e => {
+    const es = getE(e.id);
+    const act = es.active !== false;
+    if(fAct==='active'&&!act) return false;
+    if(fAct==='inactive'&&act) return false;
+    const st = es.status||'pendiente';
+    if(fSt!=='all'&&st!==fSt) return false;
+    if(fHi!=='all'&&e.hito!==fHi) return false;
+    if(fRk!=='all'&&e.riesgo!==fRk) return false;
+    if(fTx&&!e.desc.toLowerCase().includes(fTx.toLowerCase())&&!(e.code||'').toLowerCase().includes(fTx.toLowerCase())) return false;
+    return true;
+  });
+
+  let h = `<div class="tw"><table style="min-width:860px">
+    <colgroup>
+      <col style="width:28px"><col style="width:68px"><col style="width:185px"><col style="width:78px">
+      <col style="width:58px"><col style="width:90px"><col style="width:92px"><col style="width:78px">
+      <col style="width:120px"><col>
+    </colgroup>
+    <thead><tr>
+      <th title="Activar/desactivar entregable">✓</th>
+      <th>Código</th><th>Entregable</th><th>Hito</th><th>Riesgo</th>
+      <th>Estado</th><th>Responsable</th><th>Fecha</th>
+      <th>📎 Documentos</th><th>Observaciones</th>
+    </tr></thead><tbody>`;
+
+  if (!items.length) {
+    h += `<tr><td colspan="10" style="text-align:center;padding:20px;color:var(--tx3);font-style:italic">Sin resultados para los filtros aplicados</td></tr>`;
+  }
+
+  items.forEach(e => {
+    const es = getE(e.id);
+    const act = es.active !== false;
+    const st  = es.status||'pendiente';
+    const hi  = hiMap[e.hito];
+    const prtrH = (e.prtr||[]).map(t=>`<span class="pt">${t}</span>`).join('');
+    const docs  = es.docs||[];
+    const cnt   = docs.length;
+
+    let docCell = `<button class="dc-btn ${cnt?'has':''}" onclick="openEDocDrawer('${e.id}',event)">
+      <span>${cnt?'📎':'+'}</span><span>${cnt?cnt+' doc'+(cnt>1?'s':''):'Añadir'}</span>
+    </button>`;
+    if (cnt) {
+      docCell += docs.slice(0,1).map(d=>{
+        const nm=d.name||'sin nombre';
+        return `<div class="dc-pill" onclick="openEDocDrawer('${e.id}',event)" title="${nm}">📎 ${nm.substring(0,14)}${nm.length>14?'…':''}</div>`;
+      }).join('');
+      if(cnt>1) docCell+=`<div class="dc-pill" onclick="openEDocDrawer('${e.id}',event)" style="color:var(--tx3);background:var(--sf2);border-color:var(--bd2)">+${cnt-1}</div>`;
+    }
+
+    h += `<tr id="row_${e.id}" class="${act?'':'disabled-row'}">
+      <td style="text-align:center">
+        <input type="checkbox" class="chk" ${act?'checked':''} onchange="toggleActive('${e.id}',this)" title="Activar/desactivar este entregable">
+      </td>
+      <td style="font-family:monospace;font-size:10px;color:var(--tx3)">${e.code||e.id}</td>
+      <td>
+        <div class="td-ent" style="font-size:12px;font-weight:500">${e.desc}</div>
+        <div style="margin-top:3px">${prtrH}</div>
+        ${e.ev_tipo?`<div style="font-size:10px;color:var(--tx3);margin-top:2px;font-style:italic">${e.ev_tipo}</div>`:''}
+        ${e.indicador?`<div style="font-size:10px;color:var(--bl);margin-top:1px">↗ ${e.indicador}</div>`:''}
+      </td>
+      <td>${hi?`<span class="hl">${hi.label}</span><div style="font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.3">${hi.desc}</div>`:'—'}</td>
+      <td>${e.riesgo?`<span class="rk ${e.riesgo}">${e.riesgo.charAt(0).toUpperCase()+e.riesgo.slice(1)}</span>`:'—'}</td>
+      <td>
+        <span class="badge ${st}" onclick="${act?`cycleStatus('${e.id}',this)`:''}" ${act?'':'style="cursor:default;opacity:.5"'}>${SL[st]}</span>
+      </td>
+      <td><div class="ed ${es.resp?'':'e'}" contenteditable="${act}" data-ph="Responsable..." data-id="${e.id}" data-f="resp" onblur="handleEdit(this)" onfocus="this.classList.remove('e')">${es.resp||''}</div></td>
+      <td><div class="ed ${es.fecha?'':'e'}" contenteditable="${act}" data-ph="dd/mm/aaaa" data-id="${e.id}" data-f="fecha" onblur="handleEdit(this)" onfocus="this.classList.remove('e')">${es.fecha||''}</div></td>
+      <td>${docCell}</td>
+      <td><div class="ed ${es.obs?'':'e'}" contenteditable="${act}" data-ph="Notas..." data-id="${e.id}" data-f="obs" onblur="handleEdit(this)" onfocus="this.classList.remove('e')">${es.obs||''}</div></td>
+    </tr>`;
+  });
+
+  h += `</tbody></table>
+    <div style="padding:7px 11px;font-size:11px;color:var(--tx3);border-top:1px solid var(--bd)">
+      ${items.length} de ${(mod.entregables||[]).length} entregables · Desmarca ✓ para desactivar un entregable · Clic en estado para avanzar
+    </div></div>`;
+  document.getElementById('tbl').innerHTML = h;
+}
+
+// ── ENTREGABLE DOC DRAWER (inline panel, no overlay) ──────────
+let EDT_ID = null;
+
+function openEDocDrawer(entId, event) {
+  event.stopPropagation();
+  EDT_ID = entId;
+  let ent = null;
+  MODULES.forEach(m=>(m.entregables||[]).forEach(e=>{ if(e.id===entId) ent=e; }));
+
+  // Build inline panel below the row — insert after the row
+  const row = document.getElementById('row_'+entId);
+  // Remove existing panel if any
+  const existing = document.getElementById('edoc_panel_'+entId);
+  if (existing) { existing.remove(); EDT_ID=null; return; }
+  // Remove any other open panels
+  document.querySelectorAll('[id^="edoc_panel_"]').forEach(el=>el.remove());
+
+  const tr = document.createElement('tr');
+  tr.id = 'edoc_panel_'+entId;
+  tr.innerHTML = `<td colspan="10" style="padding:0;background:var(--ac2);border-bottom:2px solid var(--ac)">
+    <div id="edoc_inner_${entId}" style="padding:14px 16px"></div>
+  </td>`;
+  row.after(tr);
+  renderEDocPanel(entId, ent);
+}
+
+function renderEDocPanel(entId, ent) {
+  const es = getE(entId);
+  const docs = es.docs||[];
+  const tipos = ['Informe técnico','Acta firmada','Factura / Albarán','Certificado','Fotografías','Captura pantalla','Vídeo / Demo','Manual','Otro'];
+  let h = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+    <strong style="font-size:13px">${ent?ent.desc:'Documentos'}</strong>
+    <button onclick="document.getElementById('edoc_panel_${entId}').remove()" style="border:none;background:none;cursor:pointer;font-size:16px;color:var(--tx3)">✕</button>
+  </div>`;
+  if(ent&&ent.ev_tipo) h+=`<div style="font-size:11px;font-style:italic;color:var(--am);margin-bottom:10px;padding:5px 8px;background:var(--am2);border-radius:var(--r);border-left:3px solid var(--am3)">💡 ${ent.ev_tipo}</div>`;
+
+  if(!docs.length) h+=`<p class="empty-msg">Sin documentos aportados todavía</p>`;
+  else {
+    h+='<div class="doc-list-inline">';
+    docs.forEach(d=>{
+      const [ic,cl]=iconCls(d.url,d.name);
+      h+=`<div class="di"><div class="di-top"><div class="di-ico ${cl}">${ic}</div><div class="di-info">
+        <div class="di-name">${d.name||'Sin nombre'}</div>
+        ${d.url?`<div class="di-url"><a href="${d.url}" target="_blank">↗ Abrir</a></div>`:''}
+        ${d.tipo?`<div class="di-meta2">Tipo: ${d.tipo}</div>`:''}
+        ${d.fecha?`<div class="di-meta2">Fecha: ${d.fecha}</div>`:''}
+        ${d.obs?`<div class="di-meta2" style="font-style:italic">${d.obs}</div>`:''}
+      </div></div>
+      <div class="di-acts">
+        ${d.url?`<a class="di-open" href="${d.url}" target="_blank">Abrir ↗</a>`:''}
+        <button class="di-del" onclick="delEDoc('${entId}','${d.id}')">Eliminar</button>
+      </div></div>`;
+    });
+    h+='</div>';
+  }
+
+  h+=`<div class="add-doc-form"><h4>Añadir documento</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="fr"><label>Nombre *</label><input type="text" id="edf_n_${entId}" placeholder="Nombre del documento"></div>
+      <div class="fr"><label>Enlace Drive / URL</label><input type="text" id="edf_u_${entId}" placeholder="https://drive.google.com/..."></div>
+      <div class="fr"><label>Tipo</label><select id="edf_t_${entId}"><option value="">—</option>${tipos.map(t=>`<option>${t}</option>`).join('')}</select></div>
+      <div class="fr"><label>Fecha</label><input type="text" id="edf_f_${entId}" placeholder="dd/mm/aaaa"></div>
+    </div>
+    <div class="fr"><label>Observaciones</label><textarea id="edf_o_${entId}" placeholder="Notas, versión, estado firma..." style="min-height:36px"></textarea></div>
+    <button class="add-btn" onclick="addEDoc('${entId}')">+ Añadir documento</button>
+  </div>`;
+
+  document.getElementById('edoc_inner_'+entId).innerHTML = h;
+}
+
+function addEDoc(entId) {
+  const name = document.getElementById('edf_n_'+entId).value.trim();
+  if(!name){alert('El nombre es obligatorio');return;}
+  const es = getE(entId);
+  if(!es.docs) es.docs=[];
+  es.docs.push({
+    id:Date.now()+'', name,
+    url:  document.getElementById('edf_u_'+entId).value.trim(),
+    tipo: document.getElementById('edf_t_'+entId).value,
+    fecha:document.getElementById('edf_f_'+entId).value.trim(),
+    obs:  document.getElementById('edf_o_'+entId).value.trim()
+  });
+  persist();
+  let ent=null; MODULES.forEach(m=>(m.entregables||[]).forEach(e=>{if(e.id===entId)ent=e;}));
+  renderEDocPanel(entId,ent);
+  ['edf_n_','edf_u_','edf_f_','edf_o_'].forEach(p=>{
+    const el=document.getElementById(p+entId); if(el) el.value='';
+  });
+  // Update the doc cell button in the row
+  const row = document.getElementById('row_'+entId);
+  if(row){
+    const docs=getE(entId).docs||[];
+    const cnt=docs.length;
+    const td = row.cells[8];
+    if(td){
+      td.innerHTML=`<button class="dc-btn has" onclick="openEDocDrawer('${entId}',event)"><span>📎</span><span>${cnt} doc${cnt>1?'s':''}</span></button>`+
+        docs.slice(0,1).map(d=>{const nm=d.name||'sin nombre';return`<div class="dc-pill" onclick="openEDocDrawer('${entId}',event)">📎 ${nm.substring(0,14)}${nm.length>14?'…':''}</div>`;}).join('')+
+        (cnt>1?`<div class="dc-pill" style="color:var(--tx3);background:var(--sf2);border-color:var(--bd2)" onclick="openEDocDrawer('${entId}',event)">+${cnt-1}</div>`:'');
+    }
+  }
+}
+
+function delEDoc(entId, docId) {
+  const es=getE(entId);
+  es.docs=(es.docs||[]).filter(d=>d.id!==docId);
+  persist();
+  let ent=null; MODULES.forEach(m=>(m.entregables||[]).forEach(e=>{if(e.id===entId)ent=e;}));
+  renderEDocPanel(entId,ent);
+}
+
+// ── CIERRE TAB ───────────────────────────────────────────────
+function renderCierreTab(mod) {
+  let h = '<div class="cierre-grid">';
+  CIERRE_SLOTS.forEach(sl => {
+    const c = getCierre(mod.id, sl.key);
+    const docs = c.docs||[];
+    const cnt  = docs.length;
+    const st   = c.status||'pendiente';
+    const tipos = ['Informe técnico','Acta firmada','Factura / Albarán','Certificado','Recibo bancario','Transferencia','Otro'];
+
+    let docsH = '';
+    if(!cnt) docsH=`<p class="empty-msg">Sin documentos aportados</p>`;
+    else {
+      docsH='<div class="doc-list-inline">';
+      docs.forEach(d=>{
+        const [ic,cl]=iconCls(d.url,d.name);
+        docsH+=`<div class="di"><div class="di-top"><div class="di-ico ${cl}">${ic}</div><div class="di-info">
+          <div class="di-name">${d.name||'Sin nombre'}</div>
+          ${d.url?`<div class="di-url"><a href="${d.url}" target="_blank">↗ Abrir</a></div>`:''}
+          ${d.tipo?`<div class="di-meta2">Tipo: ${d.tipo}</div>`:''}
+          ${d.fecha?`<div class="di-meta2">Fecha: ${d.fecha}</div>`:''}
+          ${d.importe?`<div class="di-meta2" style="font-weight:600">Importe: ${d.importe}</div>`:''}
+          ${d.obs?`<div class="di-meta2" style="font-style:italic">${d.obs}</div>`:''}
+        </div></div>
+        <div class="di-acts">
+          ${d.url?`<a class="di-open" href="${d.url}" target="_blank">Abrir ↗</a>`:''}
+          <button class="di-del" onclick="delCierreDoc('${mod.id}','${sl.key}','${d.id}')">Eliminar</button>
+        </div></div>`;
+      });
+      docsH+='</div>';
+    }
+
+    const importeField = (sl.key==='fac'||sl.key==='pago') ?
+      `<div class="fr"><label>Importe</label><input type="text" id="cd_i_${mod.id}_${sl.key}" placeholder="Ej: 12.500,00 €"></div>` : '';
+
+    h+=`<div class="cierre-card">
+      <div class="cierre-card-hdr">
+        <span class="icon">${sl.icon}</span>
+        <h3>${sl.label}</h3>
+        <span class="badge ${st}" onclick="cycleCierreStatus('${mod.id}','${sl.key}',this)">${SL[st]}</span>
+      </div>
+      <div class="cierre-card-body">
+        <div class="cierre-meta">${sl.desc}<br><em style="color:var(--am)">Evidencia: ${sl.ev_tipo}</em>${sl.multi?'<strong style="color:var(--bl);margin-left:8px"> · Permite múltiples documentos</strong>':''}</div>
+        ${docsH}
+        <div class="add-doc-form"><h4>Añadir documento</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div class="fr"><label>Nombre *</label><input type="text" id="cd_n_${mod.id}_${sl.key}" placeholder="Nombre del documento"></div>
+            <div class="fr"><label>Enlace Drive / URL</label><input type="text" id="cd_u_${mod.id}_${sl.key}" placeholder="https://drive.google.com/..."></div>
+            <div class="fr"><label>Tipo</label><select id="cd_t_${mod.id}_${sl.key}"><option value="">—</option>${tipos.map(t=>`<option>${t}</option>`).join('')}</select></div>
+            <div class="fr"><label>Fecha</label><input type="text" id="cd_f_${mod.id}_${sl.key}" placeholder="dd/mm/aaaa"></div>
+            ${importeField}
+          </div>
+          <div class="fr"><label>Observaciones</label><textarea id="cd_o_${mod.id}_${sl.key}" placeholder="N.º factura, referencia pago, notas..." style="min-height:36px"></textarea></div>
+          <button class="add-btn" onclick="addCierreDoc('${mod.id}','${sl.key}')">+ Añadir documento</button>
+        </div>
+      </div>
+    </div>`;
+  });
+  h+='</div>';
+  document.getElementById('tab-content').innerHTML = h;
+}
+
+function addCierreDoc(modId, key) {
+  const name = document.getElementById(`cd_n_${modId}_${key}`).value.trim();
+  if(!name){alert('El nombre es obligatorio');return;}
+  const c = getCierre(modId, key);
+  const impEl = document.getElementById(`cd_i_${modId}_${key}`);
+  c.docs.push({
+    id:Date.now()+'', name,
+    url:    document.getElementById(`cd_u_${modId}_${key}`).value.trim(),
+    tipo:   document.getElementById(`cd_t_${modId}_${key}`).value,
+    fecha:  document.getElementById(`cd_f_${modId}_${key}`).value.trim(),
+    importe:impEl ? impEl.value.trim() : '',
+    obs:    document.getElementById(`cd_o_${modId}_${key}`).value.trim()
+  });
+  persist();
+  const mod = MODULES.find(m=>m.id===modId);
+  renderCierreTab(mod);
+}
+
+function delCierreDoc(modId, key, docId) {
+  const c = getCierre(modId, key);
+  c.docs = c.docs.filter(d=>d.id!==docId);
+  persist();
+  const mod = MODULES.find(m=>m.id===modId);
+  renderCierreTab(mod);
+}
+
+// ── DOC ICON ─────────────────────────────────────────────────
+function iconCls(url, name) {
+  const u=(url||'').toLowerCase(), n=(name||'').toLowerCase();
+  if(u.includes('spreadsheet')||n.endsWith('.xlsx')||n.endsWith('.csv')) return ['📊','sheet'];
+  if(u.includes('document')||n.endsWith('.docx')||n.endsWith('.doc'))    return ['📄','doc'];
+  if(u.includes('presentation')||n.endsWith('.pptx'))                    return ['📑','doc'];
+  if(n.endsWith('.pdf')||u.includes('pdf'))                              return ['📕','pdf'];
+  if(u.includes('drive.google')||u.includes('docs.google'))              return ['☁','drive'];
+  if(n.match(/\.(jpg|jpeg|png|gif|webp|svg)$/))                        return ['🖼','img'];
+  return ['📎','other'];
+}
+
+// ── EXPORT / IMPORT ───────────────────────────────────────────
+function exportData() {
+  const blob=new Blob([JSON.stringify({v:5,ts:new Date().toISOString(),state:S},null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='IDCATT_v5_'+new Date().toISOString().slice(0,10)+'.json'; a.click();
+}
+function doImport(ev) {
+  const f=ev.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=e=>{ try {
+    const d=JSON.parse(e.target.result);
+    if(d.state){S=d.state; persist(); go(CUR); alert('Importado correctamente.');}
+  } catch(err){alert('Error: '+err.message);}};
+  r.readAsText(f);
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+initState(); // Carga estado local como fallback
+syncInit();  // Conecta con Sheet y sincroniza
+</script>
+</body>
+</html>
