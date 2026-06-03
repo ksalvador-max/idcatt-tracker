@@ -499,6 +499,12 @@ let SYNC_PENDING = []; // queue of changes when offline
 
 function syncInit() {
   updateSyncBadge('⏳ Cargando datos..', '#f0c060');
+  // Check if returning from auth redirect
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'done') {
+    // Clean the URL without reloading
+    window.history.replaceState({}, '', window.location.pathname);
+  }
   loadFromSheet();
 }
 
@@ -524,46 +530,35 @@ function loadFromSheet() {
       needsAuth();
     }
   })
-  .catch(err => {
-    // Likely needs Google auth — show login button
+  .catch(() => {
     needsAuth();
   });
 }
 
 function needsAuth() {
-  updateSyncBadge('🔑 Requiere acceso', '#e89090');
-  // Show a friendly login screen instead of a popup
+  updateSyncBadge('🔑 Acceso requerido', '#e89090');
   document.getElementById('main').innerHTML = `
     <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:20px;text-align:center;padding:40px">
       <div style="font-size:56px">🔐</div>
       <h2 style="font-size:18px;font-weight:600;color:#1a1917">Acceso requerido</h2>
-      <p style="font-size:13px;color:#5c5a55;max-width:380px;line-height:1.6">
-        Para acceder a la herramienta necesitas iniciar sesión con tu cuenta Google autorizada.<br>
-        Se abrirá una ventana de Google — una vez que hayas iniciado sesión, vuelve aquí y la herramienta cargará automáticamente.
+      <p style="font-size:13px;color:#5c5a55;max-width:400px;line-height:1.7">
+        Para acceder a la herramienta necesitas autenticarte con tu cuenta Google.<br><br>
+        Haz clic en el botón — se abrirá la página de Google en esta misma pestaña. 
+        Después de iniciar sesión serás redirigido automáticamente aquí.
       </p>
-      <button onclick="doLogin()" style="padding:12px 28px;background:#1a5276;color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px">
-        <span>🔑</span> Iniciar sesión con Google
-      </button>
-      <p style="font-size:11px;color:#8c8a84">Si el botón no funciona, permite las ventanas emergentes de esta página en Chrome</p>
+      <a href="${WEB_APP_URL}" 
+         style="padding:13px 32px;background:#1a5276;color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:10px;text-decoration:none">
+        <span style="font-size:18px">🔑</span> Iniciar sesión con Google
+      </a>
+      <p style="font-size:11px;color:#8c8a84;max-width:360px">
+        Tras iniciar sesión, Google te mostrará una página con datos en formato JSON — 
+        es normal. Vuelve a esta pestaña con el botón Atrás del navegador 
+        y la herramienta cargará automáticamente.
+      </p>
     </div>`;
 }
 
-function doLogin() {
-  updateSyncBadge('🔑 Iniciando sesión..', '#f0c060');
-  const popup = window.open(WEB_APP_URL, 'auth_idcatt', 'width=520,height=640,left=200,top=100');
-  if (!popup) {
-    alert('Chrome ha bloqueado la ventana emergente.\n\nPor favor:\n1. Haz clic en el icono de ventana bloqueada en la barra de direcciones\n2. Selecciona "Permitir siempre ventanas emergentes de este sitio"\n3. Recarga la página');
-    return;
-  }
-  const poll = setInterval(() => {
-    if (!popup || popup.closed) {
-      clearInterval(poll);
-      updateSyncBadge('⏳ Verificando..', '#f0c060');
-      setTimeout(() => loadFromSheet(), 1500);
-    }
-  }, 600);
-}
-
+function doLogin() { needsAuth(); }
 function openAuthPopup() { needsAuth(); }
 
 function mergeSheetData(sheetData) {
