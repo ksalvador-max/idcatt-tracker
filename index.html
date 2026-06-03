@@ -498,23 +498,11 @@ let SYNC_ONLINE = false;
 let SYNC_PENDING = []; // queue of changes when offline
 
 function syncInit() {
-  updateSyncBadge('⏳ Conectando..', '#f0c060');
-  fetch(WEB_APP_URL, {method:'GET', mode:'no-cors'})
-    .then(() => {
-      // no-cors means we can't read response — use iframe trick for auth check
-      loadFromSheet();
-    })
-    .catch(() => {
-      updateSyncBadge('⚠️ Sin conexión — modo local', '#e89090');
-      SYNC_ONLINE = false;
-      initState(); updateSb(); updateHeader(); showGlobal();
-    });
+  updateSyncBadge('⏳ Cargando datos..', '#f0c060');
+  loadFromSheet();
 }
 
 function loadFromSheet() {
-  // Use a hidden iframe to trigger Google auth if needed, then fetch data
-  updateSyncBadge('⏳ Cargando datos..', '#f0c060');
-  
   fetch(WEB_APP_URL, {
     method: 'POST',
     mode: 'cors',
@@ -526,7 +514,6 @@ function loadFromSheet() {
     if (data.ok) {
       SYNC_USER = data.user || 'Usuario';
       SYNC_ONLINE = true;
-      // Merge Sheet data into local state
       mergeSheetData(data.datos);
       updateSyncBadge('🟢 ' + SYNC_USER.split('@')[0], '#7ec99a');
       updateSb(); updateHeader(); showGlobal();
@@ -534,28 +521,50 @@ function loadFromSheet() {
       updateSyncBadge('🔒 No autorizado', '#e89090');
       showAuthError(data.error);
     } else {
-      // Likely needs Google login — open auth popup
-      openAuthPopup();
+      needsAuth();
     }
   })
-  .catch(() => {
-    // CORS blocked = needs auth, open popup
-    openAuthPopup();
+  .catch(err => {
+    // Likely needs Google auth — show login button
+    needsAuth();
   });
 }
 
-function openAuthPopup() {
+function needsAuth() {
+  updateSyncBadge('🔑 Requiere acceso', '#e89090');
+  // Show a friendly login screen instead of a popup
+  document.getElementById('main').innerHTML = `
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:20px;text-align:center;padding:40px">
+      <div style="font-size:56px">🔐</div>
+      <h2 style="font-size:18px;font-weight:600;color:#1a1917">Acceso requerido</h2>
+      <p style="font-size:13px;color:#5c5a55;max-width:380px;line-height:1.6">
+        Para acceder a la herramienta necesitas iniciar sesión con tu cuenta Google autorizada.<br>
+        Se abrirá una ventana de Google — una vez que hayas iniciado sesión, vuelve aquí y la herramienta cargará automáticamente.
+      </p>
+      <button onclick="doLogin()" style="padding:12px 28px;background:#1a5276;color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px">
+        <span>🔑</span> Iniciar sesión con Google
+      </button>
+      <p style="font-size:11px;color:#8c8a84">Si el botón no funciona, permite las ventanas emergentes de esta página en Chrome</p>
+    </div>`;
+}
+
+function doLogin() {
   updateSyncBadge('🔑 Iniciando sesión..', '#f0c060');
-  const popup = window.open(WEB_APP_URL, 'auth', 'width=500,height=600');
-  
-  // Poll until popup closes (user has logged in)
+  const popup = window.open(WEB_APP_URL, 'auth_idcatt', 'width=520,height=640,left=200,top=100');
+  if (!popup) {
+    alert('Chrome ha bloqueado la ventana emergente.\n\nPor favor:\n1. Haz clic en el icono de ventana bloqueada en la barra de direcciones\n2. Selecciona "Permitir siempre ventanas emergentes de este sitio"\n3. Recarga la página');
+    return;
+  }
   const poll = setInterval(() => {
     if (!popup || popup.closed) {
       clearInterval(poll);
-      setTimeout(() => loadFromSheet(), 1000);
+      updateSyncBadge('⏳ Verificando..', '#f0c060');
+      setTimeout(() => loadFromSheet(), 1500);
     }
-  }, 500);
+  }, 600);
 }
+
+function openAuthPopup() { needsAuth(); }
 
 function mergeSheetData(sheetData) {
   // sheetData: { M0: {entregables:[...], cierre:{...}}, M1: ... }
