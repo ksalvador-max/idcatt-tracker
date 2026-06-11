@@ -550,6 +550,22 @@ function persist() {
   updateSb();
 }
 
+// Called after any state change to push delta to Sheet
+function pushChange(accion, payload) {
+  if (!SYNC_ONLINE) return;
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {'Content-Type': 'text/plain'},
+    body: JSON.stringify(Object.assign({accion: accion}, payload))
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if (!data.ok) { console.warn('Sync error:', data.error); }
+  })
+  .catch(function(err){ console.warn('Sync failed:', err); });
+}
+
 // ── SHEETS SYNC ──────────────────────────────────────────────
 const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz67eCuYgiEKdguv_O_wsg_Vj0qn7nFedxw1yAYkvQeu0FQH1w-EwDzZYIWyOdlVH8l/exec';
 let SYNC_USER = null;
@@ -648,63 +664,59 @@ function mergeSheetData(sheetData) {
 }
 
 function syncToSheet(accion, payload) {
-  if (!SYNC_ONLINE) {
-    SYNC_PENDING.push({accion, payload});
-    return;
-  }
-  fetch(WEB_APP_URL, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {'Content-Type': 'text/plain'},
-    body: JSON.stringify({accion, ...payload})
-  })
-  .then(r => r.json())
-  .then(data => {
-    if (!data.ok) console.warn('Sync error:', data.error);
-  })
-  .catch(err => {
-    console.warn('Sync failed, queued:', err);
-    SYNC_PENDING.push({accion, payload});
-    updateSyncBadge('⚠️ Guardando local..', '#f0c060');
-  });
+  pushChange(accion, payload);
 }
 
-// Patch cycleStatus to also sync
+// Patch cycleStatus to also sync to Sheet
 const _origCycleStatus = cycleStatus;
 window.cycleStatus = function(id, el) {
   _origCycleStatus(id, el);
-  // Find module and code for this entId
-  let code = null, modId = null;
-  MODULES.forEach(m => {
-    (m.entregables||[]).forEach(e => {
+  var code = null, modId = null;
+  MODULES.forEach(function(m) {
+    (m.entregables||[]).forEach(function(e) {
       if (e.id === id) { code = e.code; modId = m.id; }
     });
   });
   if (code && modId) {
-    syncToSheet('actualizarEntregable', {modId, code, campo:'status', valor: getE(id).status});
+    pushChange('actualizarEntregable', {modId: modId, code: code, campo: 'status', valor: getE(id).status});
   }
 };
 
-// Patch cycleCierreStatus to also sync
+// Patch cycleCierreStatus to also sync to Sheet
 const _origCycleCierre = cycleCierreStatus;
 window.cycleCierreStatus = function(modId, key, el) {
   _origCycleCierre(modId, key, el);
-  syncToSheet('actualizarCierre', {modId, slotKey:key, campo:'status', valor: getCierre(modId,key).status});
+  pushChange('actualizarCierre', {modId: modId, slotKey: key, campo: 'status', valor: getCierre(modId, key).status});
 };
 
-// Patch handleEdit to also sync
+// Patch handleEdit to also sync to Sheet
 const _origHandleEdit = handleEdit;
 window.handleEdit = function(el) {
   _origHandleEdit(el);
-  const id = el.dataset.id, f = el.dataset.f;
-  let code = null, modId = null;
-  MODULES.forEach(m => {
-    (m.entregables||[]).forEach(e => {
+  var id = el.dataset.id, f = el.dataset.f;
+  var code = null, modId = null;
+  MODULES.forEach(function(m) {
+    (m.entregables||[]).forEach(function(e) {
       if (e.id === id) { code = e.code; modId = m.id; }
     });
   });
   if (code && modId) {
-    syncToSheet('actualizarEntregable', {modId, code, campo:f, valor: getE(id)[f]||''});
+    pushChange('actualizarEntregable', {modId: modId, code: code, campo: f, valor: getE(id)[f]||''});
+  }
+};
+
+// Patch toggleActive to also sync to Sheet
+const _origToggleActive = toggleActive;
+window.toggleActive = function(id, chk) {
+  _origToggleActive(id, chk);
+  var code = null, modId = null;
+  MODULES.forEach(function(m) {
+    (m.entregables||[]).forEach(function(e) {
+      if (e.id === id) { code = e.code; modId = m.id; }
+    });
+  });
+  if (code && modId) {
+    pushChange('actualizarEntregable', {modId: modId, code: code, campo: 'active', valor: getE(id).active});
   }
 };
 
