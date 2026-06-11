@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IDCATT Cinco Villas — Justificación PRTR</title>
@@ -171,17 +171,18 @@ td{padding:6px 9px;vertical-align:middle;}
 <header class="hdr">
   <div>
     <h1>IDCATT Cinco Villas — Trazabilidad Justificación PRTR</h1>
-    <div class="sub">Subvención: 846.153 € &middot; Cierre ejecución: 30/06/2026 &middot; Justificación: 30/09/2026 &middot; Globaldit – OT</div>
+    <div class="sub">Subvención: 846.153 € · Cierre ejecución: 30/06/2026 · Justificación: 30/09/2026 · Globaldit – OT</div>
   </div>
   <div class="hstats">
-    <div class="hs"><div class="hs-v" id="gs-t">—</div><div class="hs-l">Total</div></div>
-    <div class="hs"><div class="hs-v" id="gs-d" style="color:#7ec99a">—</div><div class="hs-l">Completado</div></div>
-    <div class="hs"><div class="hs-v" id="gs-c" style="color:#f0c060">—</div><div class="hs-l">En curso</div></div>
-    <div class="hs"><div class="hs-v" id="gs-p" style="color:#e89090">—</div><div class="hs-l">Pendiente</div></div>
-    <div class="hs"><div class="hs-v" id="gs-doc" style="color:#90b8e0">—</div><div class="hs-l">Docs</div></div>
+    <div class="hs"><div class="hs-v" id="gs-t">179</div><div class="hs-l">Total</div></div>
+    <div class="hs"><div class="hs-v" id="gs-d" style="color:#7ec99a">1</div><div class="hs-l">Completado</div></div>
+    <div class="hs"><div class="hs-v" id="gs-c" style="color:#f0c060">0</div><div class="hs-l">En curso</div></div>
+    <div class="hs"><div class="hs-v" id="gs-p" style="color:#e89090">178</div><div class="hs-l">Pendiente</div></div>
+    <div class="hs"><div class="hs-v" id="gs-doc" style="color:#90b8e0">0</div><div class="hs-l">Docs</div></div>
   </div>
-  <div style="font-size:11px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15)" id="sync-badge">⏳ Conectando..</div>
+  <div style="font-size: 11px; padding: 4px 10px; border-radius: 20px; background: rgba(255, 255, 255, 0.15); color: rgb(126, 201, 154);" id="sync-badge">🟢 Conectado</div>
   <div class="hbtns">
+    <button class="btn" onclick="testSync()" style="background:#fef7e6;color:#7a4f00;border-color:#f0c060" title="Prueba escritura en Sheet">🔧 Test</button>
     <button class="btn btn-p" onclick="exportData()">⬇ Exportar</button>
     <button class="btn" onclick="document.getElementById('imp').click()">⬆ Importar</button>
     <input type="file" id="imp" accept=".json" style="display:none" onchange="doImport(event)">
@@ -189,8 +190,191 @@ td{padding:6px 9px;vertical-align:middle;}
 </header>
 
 <div class="body">
-  <nav class="sb" id="sb"></nav>
-  <main class="main" id="main"></main>
+  <nav class="sb" id="sb"><div class="sb-sec">Módulos del proyecto</div><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#eaf1f8;color:#1a5276;min-width:30px;text-align:center;flex-shrink:0">∑</span><div class="ni"><div style="font-size:11px;line-height:1.3">Resumen global</div></div><span class="nb">179</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#eaecee;color:#2c3e50;min-width:30px;text-align:center;flex-shrink:0">M0</span><div class="ni"><div style="font-size:11px;line-height:1.3">Oficina Técnica</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/22</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#eeedfe;color:#3c3489;min-width:30px;text-align:center;flex-shrink:0">M1</span><div class="ni"><div style="font-size:11px;line-height:1.3">Plataforma DTI Nexa + integración PID</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/37</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#e1f5ee;color:#0f6e56;min-width:30px;text-align:center;flex-shrink:0">M2</span><div class="ni"><div style="font-size:11px;line-height:1.3">CMS Semántico</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/13</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#faece7;color:#993c1d;min-width:30px;text-align:center;flex-shrink:0">M3</span><div class="ni"><div style="font-size:11px;line-height:1.3">Aplicación turística (APP)</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/9</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#eaf3de;color:#3b6d11;min-width:30px;text-align:center;flex-shrink:0">M4.1</span><div class="ni"><div style="font-size:11px;line-height:1.3">Análisis flujos turísticos (aforadores)</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/22</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#faeeda;color:#854f0b;min-width:30px;text-align:center;flex-shrink:0">M4.2</span><div class="ni"><div style="font-size:11px;line-height:1.3">Interacción digital avanzada</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/22</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#fbeaf0;color:#72243e;min-width:30px;text-align:center;flex-shrink:0">M4.3</span><div class="ni"><div style="font-size:11px;line-height:1.3">Visita autónoma e interpretación (L1+L2)</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/28</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#f5eef8;color:#6c3483;min-width:30px;text-align:center;flex-shrink:0">M5E</span><div class="ni"><div style="font-size:11px;line-height:1.3">Plan Formativo — Evento</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/9</span></button><button class="nav"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#d6eaf8;color:#1a5276;min-width:30px;text-align:center;flex-shrink:0">M5F</span><div class="ni"><div style="font-size:11px;line-height:1.3">Plan Formativo — Formación</div><div class="npb"><div class="npf" style="width:0%;background:var(--rd)"></div></div></div><span class="nb">0/11</span></button><button class="nav on"><span style="font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;background:#fdf3e3;color:#b7770d;min-width:30px;text-align:center;flex-shrink:0">M5AV</span><div class="ni"><div style="font-size:11px;line-height:1.3">Produccin audiovisual PID Cinco Villas</div><div class="npb"><div class="npf" style="width:17%;background:var(--rd)"></div></div></div><span class="nb">1/6</span></button></nav>
+  <main class="main" id="main"><div class="sh">
+    <h2><span style="background:#fdf3e3;color:#b7770d;padding:2px 8px;border-radius:4px;font-size:13px;margin-right:8px">M5AV</span>Produccin audiovisual PID Cinco Villas</h2>
+    <div class="sm">
+      <span>Proveedor adjudicatario</span>
+      <span>Adj.: <strong>4700,00 €</strong></span>
+      <span>Avance: <strong style="color:var(--rd)">1/6 (17%)</strong></span>
+      <span>Entregables activos: <strong>6/6</strong></span>
+      <span>Docs: <strong style="color:var(--bl)">0</strong></span>
+    </div></div><div class="hgrid"><div class="hc"><div class="hc-tag" style="color:#b7770d">H1</div>
+        <div class="hc-desc">Produccion y entrega de videos principales</div>
+        <div class="hc-stat" style="color:var(--am)">1/2 · 50%</div></div><div class="hc"><div class="hc-tag" style="color:#b7770d">H2</div>
+        <div class="hc-desc">Adaptaciones para redes sociales y cierre</div>
+        <div class="hc-stat" style="color:var(--tx3)">0/4 · 0%</div></div></div><div class="mod-tabs">
+    <button class="mod-tab on" id="tab-tec" onclick="switchTab('M5AV','tec')">
+      Entregables técnicos <span class="tab-cnt">6</span>
+    </button>
+    <button class="mod-tab" id="tab-cierre" onclick="switchTab('M5AV','cierre')">
+      Cierre del contrato <span class="tab-cnt">4 hitos</span>
+    </button>
+  </div>
+  <div id="tab-content"><div class="fb">
+    <label>Estado:</label>
+    <select onchange="fSt=this.value;drawTable('M5AV')">
+      <option value="all" selected="selected">Todos</option><option value="pendiente">Pendiente</option>
+      <option value="en-curso">En curso</option><option value="completado">Completado</option>
+    </select>
+    <label>Hito:</label><select onchange="fHi=this.value;drawTable('M5AV')"><option value="all" selected="selected">Todos</option><option value="M5AV-H1">H1: Produccion y entrega de videos principales</option><option value="M5AV-H2">H2: Adaptaciones para redes sociales y cierre</option></select>
+    <label>Riesgo:</label>
+    <select onchange="fRk=this.value;drawTable('M5AV')">
+      <option value="all" selected="selected">Todos</option><option value="alto">Alto</option><option value="medio">Medio</option><option value="bajo">Bajo</option>
+    </select>
+    <label>Activos:</label>
+    <select onchange="fAct=this.value;drawTable('M5AV')">
+      <option value="all" selected="selected">Todos</option><option value="active">Solo activos</option><option value="inactive">Solo inactivos</option>
+    </select>
+    <input type="text" placeholder="Buscar..." oninput="fTx=this.value;drawTable('M5AV')" style="width:130px">
+  </div>
+  <div id="tbl"><div class="tw"><table style="min-width:860px">
+    <colgroup>
+      <col style="width:28px"><col style="width:68px"><col style="width:185px"><col style="width:78px">
+      <col style="width:58px"><col style="width:90px"><col style="width:92px"><col style="width:78px">
+      <col style="width:120px"><col>
+    </colgroup>
+    <thead><tr>
+      <th title="Activar/desactivar entregable">✓</th>
+      <th>Código</th><th>Entregable</th><th>Hito</th><th>Riesgo</th>
+      <th>Estado</th><th>Responsable</th><th>Fecha</th>
+      <th>📎 Documentos</th><th>Observaciones</th>
+    </tr></thead><tbody><tr id="row_M5AV-E01" class="">
+      <td style="text-align:center">
+        <input type="checkbox" class="chk" checked="checked" onchange="toggleActive('M5AV-E01',this)" title="Activar/desactivar este entregable">
+      </td>
+      <td style="font-family:monospace;font-size:10px;color:var(--tx3)">M5AV-E01</td>
+      <td>
+        <div class="td-ent" style="font-size:12px;font-weight:500">Video 1 - Empresarios turisticos (75-90 s)</div>
+        <div style="margin-top:3px"><span class="pt">publicidad PRTR</span><span class="pt">ejecucion material</span></div>
+        <div style="font-size:10px;color:var(--tx3);margin-top:2px;font-style:italic">Archivo video + enlace publicacion. Contenido: beneficios, cultura del dato, llamada a la colaboracion</div>
+        <div style="font-size:10px;color:var(--bl);margin-top:1px">↗ Difusion PID</div>
+      </td>
+      <td><span class="hl">H1</span><div style="font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.3">Produccion y entrega de videos principales</div></td>
+      <td><span class="rk alto">Alto</span></td>
+      <td>
+        <span class="badge completado" onclick="cycleStatus('M5AV-E01',this)">Completado</span>
+      </td>
+      <td><div class="ed e" contenteditable="true" data-ph="Responsable..." data-id="M5AV-E01" data-f="resp" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><div class="ed e" contenteditable="true" data-ph="dd/mm/aaaa" data-id="M5AV-E01" data-f="fecha" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><button class="dc-btn " onclick="openEDocDrawer('M5AV-E01',event)">
+      <span>+</span><span>Añadir</span>
+    </button></td>
+      <td><div class="ed e" contenteditable="true" data-ph="Notas..." data-id="M5AV-E01" data-f="obs" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+    </tr><tr id="row_M5AV-E02" class="">
+      <td style="text-align:center">
+        <input type="checkbox" class="chk" checked="checked" onchange="toggleActive('M5AV-E02',this)" title="Activar/desactivar este entregable">
+      </td>
+      <td style="font-family:monospace;font-size:10px;color:var(--tx3)">M5AV-E02</td>
+      <td>
+        <div class="td-ent" style="font-size:12px;font-weight:500">Video 2 - Explicativo general PID (90-110 s)</div>
+        <div style="margin-top:3px"><span class="pt">publicidad PRTR</span><span class="pt">ejecucion material</span></div>
+        <div style="font-size:10px;color:var(--tx3);margin-top:2px;font-style:italic">Archivo video + enlace publicacion. Contenido: descripcion PID, impacto sostenibilidad y mejora del turismo</div>
+        <div style="font-size:10px;color:var(--bl);margin-top:1px">↗ Difusion PID</div>
+      </td>
+      <td><span class="hl">H1</span><div style="font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.3">Produccion y entrega de videos principales</div></td>
+      <td><span class="rk alto">Alto</span></td>
+      <td>
+        <span class="badge pendiente" onclick="cycleStatus('M5AV-E02',this)">Pendiente</span>
+      </td>
+      <td><div class="ed e" contenteditable="true" data-ph="Responsable..." data-id="M5AV-E02" data-f="resp" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><div class="ed e" contenteditable="true" data-ph="dd/mm/aaaa" data-id="M5AV-E02" data-f="fecha" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><button class="dc-btn " onclick="openEDocDrawer('M5AV-E02',event)">
+      <span>+</span><span>Añadir</span>
+    </button></td>
+      <td><div class="ed e" contenteditable="true" data-ph="Notas..." data-id="M5AV-E02" data-f="obs" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+    </tr><tr id="row_M5AV-E03" class="">
+      <td style="text-align:center">
+        <input type="checkbox" class="chk" checked="checked" onchange="toggleActive('M5AV-E03',this)" title="Activar/desactivar este entregable">
+      </td>
+      <td style="font-family:monospace;font-size:10px;color:var(--tx3)">M5AV-E03</td>
+      <td>
+        <div class="td-ent" style="font-size:12px;font-weight:500">Adaptacion RRSS 1a - Video 1 (20-25 s)</div>
+        <div style="margin-top:3px"><span class="pt">publicidad PRTR</span></div>
+        <div style="font-size:10px;color:var(--tx3);margin-top:2px;font-style:italic">Archivo video adaptado para redes sociales</div>
+        <div style="font-size:10px;color:var(--bl);margin-top:1px">↗ Difusion PID</div>
+      </td>
+      <td><span class="hl">H2</span><div style="font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.3">Adaptaciones para redes sociales y cierre</div></td>
+      <td><span class="rk medio">Medio</span></td>
+      <td>
+        <span class="badge pendiente" onclick="cycleStatus('M5AV-E03',this)">Pendiente</span>
+      </td>
+      <td><div class="ed e" contenteditable="true" data-ph="Responsable..." data-id="M5AV-E03" data-f="resp" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><div class="ed e" contenteditable="true" data-ph="dd/mm/aaaa" data-id="M5AV-E03" data-f="fecha" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><button class="dc-btn " onclick="openEDocDrawer('M5AV-E03',event)">
+      <span>+</span><span>Añadir</span>
+    </button></td>
+      <td><div class="ed e" contenteditable="true" data-ph="Notas..." data-id="M5AV-E03" data-f="obs" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+    </tr><tr id="row_M5AV-E04" class="">
+      <td style="text-align:center">
+        <input type="checkbox" class="chk" checked="checked" onchange="toggleActive('M5AV-E04',this)" title="Activar/desactivar este entregable">
+      </td>
+      <td style="font-family:monospace;font-size:10px;color:var(--tx3)">M5AV-E04</td>
+      <td>
+        <div class="td-ent" style="font-size:12px;font-weight:500">Adaptacion RRSS 1b - Video 1 (20-25 s)</div>
+        <div style="margin-top:3px"><span class="pt">publicidad PRTR</span></div>
+        <div style="font-size:10px;color:var(--tx3);margin-top:2px;font-style:italic">Archivo video adaptado para redes sociales</div>
+        <div style="font-size:10px;color:var(--bl);margin-top:1px">↗ Difusion PID</div>
+      </td>
+      <td><span class="hl">H2</span><div style="font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.3">Adaptaciones para redes sociales y cierre</div></td>
+      <td><span class="rk medio">Medio</span></td>
+      <td>
+        <span class="badge pendiente" onclick="cycleStatus('M5AV-E04',this)">Pendiente</span>
+      </td>
+      <td><div class="ed e" contenteditable="true" data-ph="Responsable..." data-id="M5AV-E04" data-f="resp" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><div class="ed e" contenteditable="true" data-ph="dd/mm/aaaa" data-id="M5AV-E04" data-f="fecha" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><button class="dc-btn " onclick="openEDocDrawer('M5AV-E04',event)">
+      <span>+</span><span>Añadir</span>
+    </button></td>
+      <td><div class="ed e" contenteditable="true" data-ph="Notas..." data-id="M5AV-E04" data-f="obs" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+    </tr><tr id="row_M5AV-E05" class="">
+      <td style="text-align:center">
+        <input type="checkbox" class="chk" checked="checked" onchange="toggleActive('M5AV-E05',this)" title="Activar/desactivar este entregable">
+      </td>
+      <td style="font-family:monospace;font-size:10px;color:var(--tx3)">M5AV-E05</td>
+      <td>
+        <div class="td-ent" style="font-size:12px;font-weight:500">Adaptacion RRSS 2a - Video 2 (20-25 s)</div>
+        <div style="margin-top:3px"><span class="pt">publicidad PRTR</span></div>
+        <div style="font-size:10px;color:var(--tx3);margin-top:2px;font-style:italic">Archivo video adaptado para redes sociales</div>
+        <div style="font-size:10px;color:var(--bl);margin-top:1px">↗ Difusion PID</div>
+      </td>
+      <td><span class="hl">H2</span><div style="font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.3">Adaptaciones para redes sociales y cierre</div></td>
+      <td><span class="rk medio">Medio</span></td>
+      <td>
+        <span class="badge pendiente" onclick="cycleStatus('M5AV-E05',this)">Pendiente</span>
+      </td>
+      <td><div class="ed e" contenteditable="true" data-ph="Responsable..." data-id="M5AV-E05" data-f="resp" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><div class="ed e" contenteditable="true" data-ph="dd/mm/aaaa" data-id="M5AV-E05" data-f="fecha" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><button class="dc-btn " onclick="openEDocDrawer('M5AV-E05',event)">
+      <span>+</span><span>Añadir</span>
+    </button></td>
+      <td><div class="ed e" contenteditable="true" data-ph="Notas..." data-id="M5AV-E05" data-f="obs" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+    </tr><tr id="row_M5AV-E06" class="">
+      <td style="text-align:center">
+        <input type="checkbox" class="chk" checked="checked" onchange="toggleActive('M5AV-E06',this)" title="Activar/desactivar este entregable">
+      </td>
+      <td style="font-family:monospace;font-size:10px;color:var(--tx3)">M5AV-E06</td>
+      <td>
+        <div class="td-ent" style="font-size:12px;font-weight:500">Adaptacion RRSS 2b - Video 2 (20-25 s)</div>
+        <div style="margin-top:3px"><span class="pt">publicidad PRTR</span></div>
+        <div style="font-size:10px;color:var(--tx3);margin-top:2px;font-style:italic">Archivo video adaptado para redes sociales</div>
+        <div style="font-size:10px;color:var(--bl);margin-top:1px">↗ Difusion PID</div>
+      </td>
+      <td><span class="hl">H2</span><div style="font-size:10px;color:var(--tx3);margin-top:2px;line-height:1.3">Adaptaciones para redes sociales y cierre</div></td>
+      <td><span class="rk medio">Medio</span></td>
+      <td>
+        <span class="badge pendiente" onclick="cycleStatus('M5AV-E06',this)">Pendiente</span>
+      </td>
+      <td><div class="ed e" contenteditable="true" data-ph="Responsable..." data-id="M5AV-E06" data-f="resp" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><div class="ed e" contenteditable="true" data-ph="dd/mm/aaaa" data-id="M5AV-E06" data-f="fecha" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+      <td><button class="dc-btn " onclick="openEDocDrawer('M5AV-E06',event)">
+      <span>+</span><span>Añadir</span>
+    </button></td>
+      <td><div class="ed e" contenteditable="true" data-ph="Notas..." data-id="M5AV-E06" data-f="obs" onblur="handleEdit(this)" onfocus="this.classList.remove('e')"></div></td>
+    </tr></tbody></table>
+    <div style="padding:7px 11px;font-size:11px;color:var(--tx3);border-top:1px solid var(--bd)">
+      6 de 6 entregables · Desmarca ✓ para desactivar un entregable · Clic en estado para avanzar
+    </div></div></div></div></main>
 </div>
 
 <div class="toast" id="toast">✓ Guardado</div>
@@ -1389,6 +1573,29 @@ function doImport(ev) {
 // ── INIT ──────────────────────────────────────────────────────
 initState(); // Carga estado local como fallback
 syncInit();  // Conecta con Sheet y sincroniza
+
+// Test button function
+function testSync() {
+  if (!SYNC_ONLINE) { alert('No conectado. Recarga la pagina.'); return; }
+  updateSyncBadge('Probando...', '#f0c060');
+  fetch(WEB_APP_URL, {
+    method: 'POST', mode: 'cors',
+    headers: {'Content-Type': 'text/plain'},
+    body: JSON.stringify({accion:'actualizarEntregable', modId:'M5AV',
+      code:'M5AV-E01', campo:'obs', valor:'TEST_' + Date.now()})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if (d.ok) {
+      updateSyncBadge('Conectado', '#7ec99a');
+      alert('SYNC OK - Revisa hoja M5AV columna Observaciones del primer entregable');
+    } else {
+      alert('Error Sheet: ' + (d.error || 'desconocido'));
+    }
+  })
+  .catch(function(e){ alert('Error de red: ' + e.message); });
+}
 </script>
-</body>
-</html>
+
+
+</body></html>
