@@ -485,6 +485,23 @@ const MODULES = [
       {id:'M5F-E10',code:'M5F-E10',desc:'Informe de Conformidad PRTR',hito:'M5F-H3',prtr:['Informe Conformidad PRTR'],riesgo:'alto',indicador:'Cierre contrato',ev_tipo:'Informe de conformidad PRTR firmado OT'},
       {id:'M5F-E11',code:'M5F-E11',desc:'Informe de cierre del servicio de atención docente',hito:'M5F-H3',prtr:['capacitación'],riesgo:'bajo',indicador:'Capacitación agentes turísticos',ev_tipo:'Registro de consultas, tiempos de respuesta, valoración'}
     ]
+  },
+  {
+    id:'M5AV', label:'M5AV', tag:'M5AV',
+    name:'Produccin audiovisual PID Cinco Villas', empresa:'Proveedor adjudicatario',
+    color:'#b7770d', colorBg:'#fdf3e3', importe:4700.00,
+    hitos:[
+      {id:'M5AV-H1',label:'H1',desc:'Produccion y entrega de videos principales'},
+      {id:'M5AV-H2',label:'H2',desc:'Adaptaciones para redes sociales y cierre'}
+    ],
+    entregables:[
+      {id:'M5AV-E01',code:'M5AV-E01',desc:'Video 1 - Empresarios turisticos (75-90 s)',hito:'M5AV-H1',prtr:['publicidad PRTR','ejecucion material'],riesgo:'alto',indicador:'Difusion PID',ev_tipo:'Archivo video + enlace publicacion. Contenido: beneficios, cultura del dato, llamada a la colaboracion'},
+      {id:'M5AV-E02',code:'M5AV-E02',desc:'Video 2 - Explicativo general PID (90-110 s)',hito:'M5AV-H1',prtr:['publicidad PRTR','ejecucion material'],riesgo:'alto',indicador:'Difusion PID',ev_tipo:'Archivo video + enlace publicacion. Contenido: descripcion PID, impacto sostenibilidad y mejora del turismo'},
+      {id:'M5AV-E03',code:'M5AV-E03',desc:'Adaptacion RRSS 1a - Video 1 (20-25 s)',hito:'M5AV-H2',prtr:['publicidad PRTR'],riesgo:'medio',indicador:'Difusion PID',ev_tipo:'Archivo video adaptado para redes sociales'},
+      {id:'M5AV-E04',code:'M5AV-E04',desc:'Adaptacion RRSS 1b - Video 1 (20-25 s)',hito:'M5AV-H2',prtr:['publicidad PRTR'],riesgo:'medio',indicador:'Difusion PID',ev_tipo:'Archivo video adaptado para redes sociales'},
+      {id:'M5AV-E05',code:'M5AV-E05',desc:'Adaptacion RRSS 2a - Video 2 (20-25 s)',hito:'M5AV-H2',prtr:['publicidad PRTR'],riesgo:'medio',indicador:'Difusion PID',ev_tipo:'Archivo video adaptado para redes sociales'},
+      {id:'M5AV-E06',code:'M5AV-E06',desc:'Adaptacion RRSS 2b - Video 2 (20-25 s)',hito:'M5AV-H2',prtr:['publicidad PRTR'],riesgo:'medio',indicador:'Difusion PID',ev_tipo:'Archivo video adaptado para redes sociales'}
+    ]
   }
 ];
 
@@ -832,26 +849,123 @@ function go(id) {
 // ── GLOBAL ────────────────────────────────────────────────────
 function showGlobal() {
   const s = gStats();
+  const IVA = 0.21;
+  const fmt = (n) => n.toLocaleString('es-ES', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' €';
+
+  // Financial summary
+  const mods = MODULES.filter(m=>!m.isGlobal);
+  const adjudicados = mods.filter(m=>m.importe);
+  const pendientes  = mods.filter(m=>!m.importe);
+  const totalBase   = adjudicados.reduce((acc,m)=>acc+m.importe, 0);
+  const totalIVA    = totalBase * IVA;
+  const totalConIVA = totalBase + totalIVA;
+  const subvencion  = 846153.00;
+  const gap         = subvencion - totalBase;
+
   let h = `<div class="sh"><h2>Resumen global del proyecto</h2>
     <div class="sm"><span>Entregables activos: <strong>${s.tot}</strong></span><span>Documentos: <strong style="color:var(--bl)">${s.docs}</strong></span></div></div>
+
     <div class="sr">
       <div class="sc g"><div class="sl">Completado</div><div class="sv">${s.pct}%</div><div class="ss">${s.done} de ${s.tot}</div></div>
       <div class="sc a"><div class="sl">En curso</div><div class="sv">${s.cur}</div></div>
       <div class="sc r"><div class="sl">Pendiente</div><div class="sv">${s.pend}</div></div>
       <div class="sc b"><div class="sl">Documentos</div><div class="sv">${s.docs}</div></div>
-    </div>`;
-  MODULES.filter(m=>!m.isGlobal).forEach(mod => {
+    </div>
+
+    <!-- TABLA FINANCIERA -->
+    <div style="background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden;margin-bottom:18px">
+      <div style="padding:11px 16px;background:#1a5276;color:#fff;font-size:12px;font-weight:600">
+        Resumen financiero — Importes de adjudicación
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead>
+          <tr style="background:var(--sf2)">
+            <th style="padding:7px 12px;text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);border-bottom:1px solid var(--bd)">Módulo</th>
+            <th style="padding:7px 12px;text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);border-bottom:1px solid var(--bd)">Proveedor</th>
+            <th style="padding:7px 12px;text-align:right;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);border-bottom:1px solid var(--bd)">Base (sin IVA)</th>
+            <th style="padding:7px 12px;text-align:right;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);border-bottom:1px solid var(--bd)">IVA (21%)</th>
+            <th style="padding:7px 12px;text-align:right;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);border-bottom:1px solid var(--bd)">Total (con IVA)</th>
+            <th style="padding:7px 12px;text-align:right;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);border-bottom:1px solid var(--bd)">Avance</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+  mods.forEach((mod, i) => {
+    const ms = modStats(mod);
+    const pc = ms.pct===100?'var(--gn)':ms.pct>50?'var(--am)':'var(--rd)';
+    const base = mod.importe || null;
+    const iva  = base ? base * IVA : null;
+    const tot  = base ? base + iva : null;
+    h += `<tr style="border-bottom:1px solid var(--bd);cursor:pointer" onclick="go('${mod.id}')">
+      <td style="padding:8px 12px">
+        <span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;background:${mod.colorBg};color:${mod.color};margin-right:6px">${mod.label}</span>
+        <strong style="font-size:12px">${mod.name}</strong>
+      </td>
+      <td style="padding:8px 12px;font-size:11px;color:var(--tx2)">${mod.empresa}</td>
+      <td style="padding:8px 12px;text-align:right;font-weight:600">${base ? fmt(base) : '<span style="color:var(--tx3);font-weight:400">Pendiente</span>'}</td>
+      <td style="padding:8px 12px;text-align:right;color:var(--tx2)">${iva ? fmt(iva) : '—'}</td>
+      <td style="padding:8px 12px;text-align:right;font-weight:600">${tot ? fmt(tot) : '—'}</td>
+      <td style="padding:8px 12px;text-align:right">
+        <div style="display:flex;align-items:center;gap:6px;justify-content:flex-end">
+          <div style="width:60px;height:4px;background:var(--bd);border-radius:2px;overflow:hidden">
+            <div style="width:${ms.pct}%;height:100%;background:${pc};border-radius:2px"></div>
+          </div>
+          <span style="font-size:11px;font-weight:600;color:${pc}">${ms.pct}%</span>
+        </div>
+      </td>
+    </tr>`;
+  });
+
+  // TOTALES
+  h += `<tr style="background:var(--sf2);border-top:2px solid var(--bd2)">
+    <td style="padding:10px 12px" colspan="2">
+      <strong style="font-size:12px">TOTAL ADJUDICADO</strong>
+      <span style="font-size:10px;color:var(--tx3);margin-left:8px">${pendientes.length} módulo${pendientes.length!==1?'s':''} pendiente${pendientes.length!==1?'s':''} de adjudicar</span>
+    </td>
+    <td style="padding:10px 12px;text-align:right;font-weight:700;font-size:13px">${fmt(totalBase)}</td>
+    <td style="padding:10px 12px;text-align:right;font-weight:700;font-size:13px">${fmt(totalIVA)}</td>
+    <td style="padding:10px 12px;text-align:right;font-weight:700;font-size:13px">${fmt(totalConIVA)}</td>
+    <td style="padding:10px 12px;text-align:right">
+      <span style="font-size:11px;font-weight:600;color:var(--gn)">${Math.round(totalBase/subvencion*100)}% ejecutado</span>
+    </td>
+  </tr>
+  <tr style="background:#eaf1f8;border-top:1px solid var(--bd2)">
+    <td style="padding:8px 12px" colspan="2">
+      <span style="font-size:11px;color:var(--ac)">Subvención PRTR total concedida</span>
+    </td>
+    <td style="padding:8px 12px;text-align:right;font-size:12px;font-weight:600;color:var(--ac)">${fmt(subvencion)}</td>
+    <td colspan="2" style="padding:8px 12px"></td>
+    <td style="padding:8px 12px;text-align:right">
+      <span style="font-size:11px;color:var(--tx3)">Base de referencia</span>
+    </td>
+  </tr>
+  <tr style="background:${gap>=0?'#e8f5ee':'#fdeaea'};border-top:1px solid var(--bd2)">
+    <td style="padding:8px 12px" colspan="2">
+      <span style="font-size:11px;font-weight:600;color:${gap>=0?'var(--gn)':'var(--rd)'}">
+        ${gap>=0?'↓ Margen disponible (subvención − adjudicado)':'⚠️ Sobrecoste respecto a subvención'}
+      </span>
+    </td>
+    <td style="padding:8px 12px;text-align:right;font-size:13px;font-weight:700;color:${gap>=0?'var(--gn)':'var(--rd)'}">${fmt(Math.abs(gap))}</td>
+    <td colspan="3" style="padding:8px 12px;font-size:10px;color:var(--tx3)">
+      ${gap>=0?'Importes pendientes de adjudicar deben caber en este margen':'Revisar ajuste presupuestario'}
+    </td>
+  </tr>
+  </tbody></table></div>`;
+
+  // MODULE CARDS
+  mods.forEach(mod => {
     const ms = modStats(mod);
     const pc = ms.pct===100?'var(--gn)':ms.pct>50?'var(--am)':'var(--rd)';
     h += `<div class="gc" onclick="go('${mod.id}')"><div class="gc-hdr">
       <span class="mtag" style="background:${mod.colorBg};color:${mod.color}">${mod.label}</span>
       <div class="mn" style="flex:1"><strong>${mod.name}</strong><small>${mod.empresa}</small></div>
-      ${mod.importe?`<div style="font-size:11px;color:var(--tx2);text-align:right;white-space:nowrap"><small>Adj.</small><br><strong style="font-size:13px;color:var(--tx)">${mod.importe.toLocaleString('es-ES',{minimumFractionDigits:2})} €</strong></div>`:''}
+      ${mod.importe?`<div style="font-size:11px;color:var(--tx2);text-align:right;white-space:nowrap"><small>Base s/IVA</small><br><strong style="font-size:13px;color:var(--tx)">${fmt(mod.importe)}</strong></div>`:'<div style="font-size:11px;color:var(--tx3);white-space:nowrap">Pendiente adj.</div>'}
       <div style="font-size:11px;color:var(--bl);white-space:nowrap">${ms.docs} docs</div>
       <div class="mpb"><div class="mbar"><div class="mbf" style="width:${ms.pct}%;background:${pc}"></div></div><span class="mpct" style="color:${pc}">${ms.pct}%</span></div>
       <span style="color:var(--tx3)">→</span>
     </div></div>`;
   });
+
   document.getElementById('main').innerHTML = h;
 }
 
